@@ -3,6 +3,10 @@
 const mapOne = [];
 const mapTwo = [];
 const mapThree = [];
+// diffculty constants for grid size
+const LEVEL_EASY = 5;
+const LEVEL_MEDIUM = 7;
+const LEVEL_HARD = 9;
 
 /*-------------------------------- Variables --------------------------------*/
 // for initial build, only one helper is available (hammer)
@@ -21,8 +25,19 @@ const rulesButton = document.querySelector(".rules-icon");
 const closeButton = document.querySelector(".close-icon");
 const helperButtons = document.querySelectorAll(".helper");
 const arrowButtons = document.querySelectorAll(".arrow");
+// declare cached element references for the 2 grids : main and secondary
+const mainGrid = document.querySelector(".main-grid");
+const secGrid = document.querySelector(".secondary-grid");
 
 /*-------------------------------- Functions --------------------------------*/
+// function to generate grid based on difficulty variable set
+const generateGrid = (gridSize) => {
+    for (i = 0; i < gridSize * gridSize; i++) {
+        mainGrid.innerHTML += `<di class="sqr" id="${i}"></div>`;
+        secGrid.innerHTML += `<di class="sqr" id="${i}"></div>`;
+    }
+};
+
 // randomise map used for the user to play
 const randomiseMap = () => {
     // randomise map selected
@@ -69,12 +84,15 @@ const resetGame = () => {};
 const playGame = () => {};
 
 // initialise game
-const init = () => {};
+const init = () => {
+    generateGrid(LEVEL_EASY);
+};
 
 // render the game
 const render = () => {};
 
 /*----------------------------- Event Listeners -----------------------------*/
 // initialise the game when start button is clicked
-startButton.addEventListener("onclick", init); // will it clash with the onclick in index.html?
+// startButton.addEventListener("onclick", init);
 // movement controls : arrow buttons on screen or use keyboard arrows
+init();
