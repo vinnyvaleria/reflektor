@@ -66,6 +66,11 @@ body > div,
     max-width: 380px;
 }
 
+/* Suggested to make it different so player is not confused */
+.secondary-grid {
+    filter: grayscale(1);
+}
+
 .sqr {
     width: 70px;
     aspect-ratio: 1/1;
