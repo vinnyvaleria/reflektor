@@ -321,3 +321,20 @@ arrowButtons.forEach((arrowButton) => {
         movePlayer(direction);
     });
 });
+
+document.addEventListener("keydown", (e) => {
+    switch (e.key) {
+        case "ArrowUp":
+            movePlayer("up");
+            break;
+        case "ArrowDown":
+            movePlayer("down");
+            break;
+        case "ArrowLeft":
+            movePlayer("left");
+            break;
+        case "ArrowRight":
+            movePlayer("right");
+            break;
+    }
+});
