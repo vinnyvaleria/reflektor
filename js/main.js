@@ -50,6 +50,10 @@ let mirroredCol;
 // noticed that user can still move after game won
 // create a state to check if game is won
 let hasWon = false;
+// variable to store which div obstacle id to remove
+let removeID;
+// for event listener on the grid, we can utilise sqr class
+let sqrElements;
 
 /*------------------------ Cached Element References ------------------------*/
 // all functional icons and buttons
@@ -71,9 +75,10 @@ const generateGrid = (gridSize) => {
         // using innerHTML to simplify populating within the respective main and secondary grid div
         // using Tic Tac Toe homework as reference for grid structures
         // assigning id similar to the homework, in order to utilise event.target.id later on
-        mainGrid.innerHTML += `<di class="sqr" id="main-${i}"></div>`;
-        secGrid.innerHTML += `<di class="sqr" id="sec-${i}"></div>`;
+        mainGrid.innerHTML += `<div class="sqr" id="main-${i}"></div>`;
+        secGrid.innerHTML += `<div class="sqr" id="sec-${i}"></div>`;
     }
+    sqrElements = document.querySelectorAll(".sqr");
 };
 
 // randomise map used for the user to play
@@ -352,4 +357,21 @@ document.addEventListener("keydown", (e) => {
             movePlayer("right");
             break;
     }
+});
+
+// event listener when any of the helper is clicked
+helperButtons.forEach((helperButton) => {
+    helperButton.addEventListener("click", () => {
+        // set the existing helper variable
+        currentHelper = helperButton.dataset.helper;
+        // console.log(currentHelper); --> validated that it is working!
+    });
+});
+
+// add event listener to the mai
+sqrElements.forEach((sqr) => {
+    sqr.addEventListener("click", (e) => {
+        removeID = e.target.id;
+        console.log(removeID);
+    });
 });
