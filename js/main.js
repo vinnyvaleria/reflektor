@@ -331,6 +331,7 @@ arrowButtons.forEach((arrowButton) => {
     });
 });
 
+// Reference : https://stackoverflow.com/questions/5597060/detecting-arrow-key-presses-in-javascript
 document.addEventListener("keydown", (e) => {
     switch (e.key) {
         case "ArrowUp":

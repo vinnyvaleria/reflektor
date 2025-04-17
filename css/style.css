@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Jersey10;
+    src: url(../assets/fonts/Jersey10-Regular.ttf);
+}
+
 :root {
     --primary: #ff2d55;
     --secondary: #9c0a26;
@@ -53,6 +58,16 @@ body > div,
 
 .obstacle {
     background-color: var(--black);
+}
+
+.player,
+.goal {
+    font-family: "Jersey10", sans-serif;
+    font-size: 2rem;
+}
+
+.goal {
+    color: var(--primary);
 }
 
 .helpers {
