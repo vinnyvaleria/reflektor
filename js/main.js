@@ -30,6 +30,8 @@ const maps_EASY = [mapOne_EASY, mapTwo_EASY, mapThree_EASY];
 const LEVEL_EASY = 5;
 const LEVEL_MEDIUM = 7;
 const LEVEL_HARD = 9;
+// available obstacles
+const OBSTACLES = ["wall", "tree", "grass"];
 
 /*-------------------------------- Variables --------------------------------*/
 // for initial build, only one helper is available (hammer)
@@ -119,6 +121,13 @@ const updateGrid = (mapArray, gridType, gridName) => {
                     gridType
                         .querySelector(`#${gridName}-${count}`)
                         .classList.add("obstacle");
+                    // randomise obstacles set
+                    const obsIndex = Math.floor(
+                        Math.random() * OBSTACLES.length
+                    );
+                    gridType
+                        .querySelector(`#${gridName}-${count}`)
+                        .classList.add(`${OBSTACLES[obsIndex]}`);
                 }
                 // update the text in div to P in grid if value is 2
                 if (mapArray[row][col] === 2) {

@@ -80,6 +80,18 @@ body > div,
     background-color: var(--black);
 }
 
+.wall {
+    background-image: url(../assets/images/wall.png);
+}
+
+.tree {
+    background-image: url(../assets/images/tree.png);
+}
+
+.grass {
+    background-image: url(../assets/images/grass.png);
+}
+
 .player,
 .goal {
     font-size: 2rem;
