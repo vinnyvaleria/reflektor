@@ -34,12 +34,12 @@ const LEVEL_HARD = 9;
 /*-------------------------------- Variables --------------------------------*/
 // for initial build, only one helper is available (hammer)
 // in the future, more will be added
-var currentHelper;
-var roundCounter;
+let currentHelper;
+let roundCounter;
 // const for selected map
-var selectedMap = [];
+let selectedMap = [];
 // for mirrored version of selected map
-var mirroredMap;
+let mirroredMap;
 
 /*------------------------ Cached Element References ------------------------*/
 // all functional icons and buttons
@@ -61,8 +61,8 @@ const generateGrid = (gridSize) => {
         // using innerHTML to simplify populating within the respective main and secondary grid div
         // using Tic Tac Toe homework as reference for grid structures
         // assigning id similar to the homework, in order to utilise event.target.id later on
-        mainGrid.innerHTML += `<di class="sqr" id="${i}"></div>`;
-        secGrid.innerHTML += `<di class="sqr" id="${i}"></div>`;
+        mainGrid.innerHTML += `<di class="sqr" id="main-${i}"></div>`;
+        secGrid.innerHTML += `<di class="sqr" id="sec-${i}"></div>`;
     }
 };
 
@@ -83,7 +83,42 @@ const mirrorSelectedMap = () => {
 };
 
 // create a function to populate the grids with the obstacles
-const populateGrid = () => {};
+// 3 arguments to pass in, refer to renderr() on how to use
+const populateGrid = (mapArray, gridType, gridName) => {
+    // temporary counter, for id set in the sqr classes within each grid
+    let count = 0;
+
+    try {
+        for (let row = 0; row < mapArray.length; row++) {
+            for (let col = 0; col < mapArray[row].length; col++) {
+                // refer to line 3 to 6 what 0-3 are for in the mapArray
+                // add new class obstacle if the value in the mapArray is 1
+                // console.log(`#${count}`); --> to check if the counter works
+                if (mapArray[row][col] === 1) {
+                    gridType
+                        .querySelector(`#${gridName}-${count}`)
+                        .classList.add("obstacle");
+                }
+                // update the text in div to P in grid if value is 2
+                if (mapArray[row][col] === 2) {
+                    gridType.querySelector(
+                        `#${gridName}-${count}`
+                    ).textContent = "P";
+                }
+                // update content to X to indicate goal when value is 3
+                if (mapArray[row][col] === 3) {
+                    gridType.querySelector(
+                        `#${gridName}-${count}`
+                    ).textContent = "X";
+                }
+                count++;
+            }
+        }
+    } catch (error) {
+        // in case any of arguments passed is incorrect
+        // console.log(error);
+    }
+};
 
 // function for when helper is used
 const removeObstacle = () => {
@@ -124,17 +159,22 @@ const resetGame = () => {};
 // play the game
 const playGame = () => {};
 
+// render the game
+const render = () => {
+    populateGrid(selectedMap, mainGrid, "main");
+    populateGrid(mirroredMap, secGrid, "sec");
+};
+
 // initialise game
 const init = () => {
+    console.log("Game initialised!");
     generateGrid(LEVEL_EASY);
     selectedMap = randomiseMap();
     // console.log(`selectedMap : ${selectedMap}`); --> validated correct map based on randomIndex pointed!
     mirroredMap = mirrorSelectedMap();
     // console.log(`mirroredMap : ${mirroredMap}`); --> validated selectedMap mirrored correctly
+    render();
 };
-
-// render the game
-const render = () => {};
 
 /*----------------------------- Event Listeners -----------------------------*/
 // initialise the game when start button is clicked
