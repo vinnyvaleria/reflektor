@@ -1,12 +1,18 @@
 @font-face {
-    font-family: Jersey10;
+    font-family: "Jersey 10";
     src: url(../assets/fonts/Jersey10-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Pixelify Sans";
+    src: url(../assets/fonts/PixelifySans-VariableFont_wght.ttf);
 }
 
 :root {
     --primary: #ff2d55;
     --secondary: #9c0a26;
     --blue: #00639a;
+    --green: #5ce65c;
     --dark: #5e0a0a;
     --light: #f5f5dc;
     --black: #000;
@@ -24,11 +30,25 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: "Jersey 10", sans-serif;
+}
+
+h1 {
+    font-family: "Pixelify Sans", sans-serif;
+    text-transform: uppercase;
+    font-size: 4rem;
+    margin: 0;
+}
+
+p {
+    margin: 0;
+    font-size: 1rem;
+    text-transform: uppercase;
 }
 
 body > div,
 .game-grids-container > div {
-    margin: 1em;
+    margin: 0.5rem;
 }
 
 .game-grids-container {
@@ -62,12 +82,16 @@ body > div,
 
 .player,
 .goal {
-    font-family: "Jersey10", sans-serif;
     font-size: 2rem;
 }
 
 .goal {
     color: var(--primary);
+    background-color: var(--secondary);
+}
+
+.goal.won {
+    background-color: var(--green);
 }
 
 .helpers {
