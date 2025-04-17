@@ -49,3 +49,7 @@ body > div,
     justify-content: center;
     align-items: center;
 }
+
+.obstacle {
+    background-color: var(--black);
+}

@@ -1,6 +1,7 @@
 # To Track Progress of the Project
 
-| Check-in Date | Current Milestone | Future Milestone |
-| :-----------: | ----------------- | ---------------- |
-| 12-Apr-25 | - [x] Game planning approval <br> - [x] Initial pseudo code review | - [x] Wireframe based on initial MVP. <br> - [x] Completed skeleton of HTML, CSS and JS (structured from constants to functions) <br> - [x] Created basic foldering structure (including for assets such as images and fonts) |
-
+| Check-in Date | Milestones | 
+| :-----------: | ----------------- | 
+| 12-Apr-25 | ✅ Game planning approval <br> ✅ Initial pseudo code review |
+| 15-Apr-25 | ✅ Completed Wireframe based on initial MVP. <br> ✅ Completed skeleton of HTML, CSS and JS (structured from constants to functions) <br> ✅ Created basic foldering structure (including for assets such as images and fonts)|
+| 17-Apr | ✅ Amend CSS file to easily pass in functions on elements. <br> ✅ Create function to generate grid and render accordingly. (For now 5x5, scalable for future enhancement) <br> ✅ Create function to populate grid with obstacles based on the map selected. (Currently will create 3 const mapArrays and will pass in to a different function for system to randomise)
