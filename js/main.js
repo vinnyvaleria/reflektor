@@ -47,6 +47,9 @@ let playerRow;
 let playerCol;
 // only require col for mirrored position
 let mirroredCol;
+// noticed that user can still move after game won
+// create a state to check if game is won
+let hasWon = false;
 
 /*------------------------ Cached Element References ------------------------*/
 // all functional icons and buttons
@@ -187,12 +190,18 @@ const checkGoalReached = (row, col, mCol) => {
         mainGrid.querySelector(".goal").textContent = "Won!";
         secGrid.querySelector(".goal").textContent = "Won!";
         console.log("You have reached the goal!");
+        hasWon = true;
         return true;
     }
 };
 
 // move player based on user input
 const movePlayer = (direction) => {
+    if (hasWon) {
+        console.log("You have won! No more move allowed!");
+        return;
+    }
+
     // user in main grid will move on the correct direction
     let newRow = playerRow; // y-axis
     let newCol = playerCol; // x-axis
