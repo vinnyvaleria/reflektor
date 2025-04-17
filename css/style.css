@@ -108,10 +108,14 @@ body > div,
 }
 
 .helpers {
-    height: 350px;
+    height: 380px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.helper {
+    margin: 2rem 0.5rem;
 }
 
 .arrows {
