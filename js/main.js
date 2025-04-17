@@ -252,8 +252,6 @@ const movePlayer = (direction) => {
             newCol++;
             newMCol--;
             break;
-        default:
-            break;
     }
 
     // check if player hits obstacle
@@ -359,11 +357,6 @@ const removeObstacle = () => {
                 }
             }
             break;
-        default:
-            console.log(
-                `You cannot remove this obstacle with ${currentHelper}`
-            );
-            break;
     }
 };
 
@@ -448,6 +441,22 @@ helperButtons.forEach((helperButton) => {
         currentHelper = helperButton.dataset.helper;
         // console.log(currentHelper); --> validated that it is working!
     });
+});
+
+// set currentHelper by binding obstacles to the keyboard
+document.addEventListener("keydown", (e) => {
+    switch (e.key) {
+        case "1":
+            currentHelper = "hammer";
+            break;
+        case "2":
+            currentHelper = "axe";
+            break;
+        case "3":
+            currentHelper = "sickle";
+            break;
+    }
+    console.log(currentHelper);
 });
 
 // add event listener to the mai
