@@ -91,7 +91,7 @@ const mirrorSelectedMap = () => {
 
 // create a function to populate the grids with the obstacles
 // 3 arguments to pass in, refer to renderr() on how to use
-const populateGrid = (mapArray, gridType, gridName) => {
+const updateGrid = (mapArray, gridType, gridName) => {
     // temporary counter, for id set in the sqr classes within each grid
     let count = 0;
 
@@ -99,6 +99,12 @@ const populateGrid = (mapArray, gridType, gridName) => {
         for (let row = 0; row < mapArray.length; row++) {
             for (let col = 0; col < mapArray[row].length; col++) {
                 // refer to line 3 to 6 what 0-3 are for in the mapArray
+                // to reset the grid to blank if value is 0
+                if (mapArray[row][col] === 0) {
+                    gridType.querySelector(
+                        `#${gridName}-${count}`
+                    ).textContent = "";
+                }
                 // add new class obstacle if the value in the mapArray is 1
                 // console.log(`#${count}`); --> to check if the counter works
                 if (mapArray[row][col] === 1) {
@@ -148,7 +154,6 @@ const movePlayer = (direction) => {
     // user in main grid will move on the correct direction
     let newRow = playerRow; // y-axis
     let newCol = playerCol; // x-axis
-    mirroredCol = mirroredMap[playerRow].indexOf(2);
     let newMCol = mirroredCol;
     // console.log(mirroredCol);    --> validated correct index returned
 
@@ -189,21 +194,34 @@ const movePlayer = (direction) => {
         newCol >= selectedMap[newRow].length ||
         newMCol >= mirroredMap[newRow].length
     ) {
+        console.log("No movement out of the grid allowed!");
         return; // out of bounds
     }
 
-    let newMirroredCol = selectedMap[playerRow].length - 1 - playerCol;
     // if obstacle is hit  in either main or secondary grid,
     if (
         selectedMap[newRow][newCol] === 1 ||
-        mirroredMap[newRow][newMirroredCol] === 1
+        mirroredMap[newRow][newMCol] === 1
     ) {
         console.log("You have hit an obstacle!");
     }
 
     // update grid for main and secondary
-    // set the value to 0 when player moves
+    // set the value to 0 within each grid to indicate player has moved
+    selectedMap[playerRow][playerCol] = 0;
+    mirroredMap[playerRow][mirroredCol] = 0;
 
+    // set the value to 2 for the new position of player
+    selectedMap[newRow][newCol] = 2;
+    mirroredMap[newRow][newMCol] = 2;
+
+    // update existing global variables on player x,y coordinates
+    playerRow = newRow;
+    playerCol = newCol;
+    mirroredCol = newMCol;
+
+    // re-render changes
+    render();
     // user can continue or restarts game
 };
 
@@ -240,8 +258,8 @@ const playGame = () => {};
 
 // render the game
 const render = () => {
-    populateGrid(selectedMap, mainGrid, "main");
-    populateGrid(mirroredMap, secGrid, "sec");
+    updateGrid(selectedMap, mainGrid, "main");
+    updateGrid(mirroredMap, secGrid, "sec");
 };
 
 // initialise game
@@ -253,6 +271,8 @@ const init = () => {
     mirroredMap = mirrorSelectedMap();
     // console.log(`mirroredMap : ${mirroredMap}`); --> validated selectedMap mirrored correctly
     locatePlayerInit();
+    // assign mirroreCol variable
+    mirroredCol = mirroredMap[playerRow].indexOf(2);
     render();
 };
 
