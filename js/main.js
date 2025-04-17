@@ -149,6 +149,14 @@ const locatePlayerInit = () => {
     }
 };
 
+// check if player reaches the goal
+const checkGoalReached = (row, col) => {
+    if (selectedMap[row][col] === 3) {
+        console.log("You have reached the goal!");
+        return `Congratulations! You have reached the goal!`;
+    }
+};
+
 // move player based on user input
 const movePlayer = (direction) => {
     // user in main grid will move on the correct direction
