@@ -137,7 +137,7 @@ const updateGrid = (mapArray, gridType, gridName) => {
         }
     } catch (error) {
         // in case any of arguments passed is incorrect
-        console.log(error);
+        // console.log(error);
     }
 };
 
@@ -171,19 +171,21 @@ const checkForObstacles = (row, col, mCol) => {
         mCol >= mirroredMap[row].length
     ) {
         console.log("No movement out of the grid allowed!");
-        return; // out of bounds
+        return true; // out of bounds
     }
 
     // if obstacle is hit  in either main or secondary grid
     if (selectedMap[row][col] === 1 || mirroredMap[row][mCol] === 1) {
         console.log("You have hit an obstacle!");
-        return;
+        return true;
     }
 };
 
 // check if player reaches the goal
-const checkGoalReached = (row, col) => {
+const checkGoalReached = (row, col, mCol) => {
     if (selectedMap[row][col] === 3) {
+        mainGrid.querySelector(".goal").textContent = "Won!";
+        secGrid.querySelector(".goal").textContent = "Won!";
         console.log("You have reached the goal!");
         return true;
     }
@@ -221,8 +223,15 @@ const movePlayer = (direction) => {
             break;
     }
 
-    checkForObstacles(newRow, newCol, newMCol);
-    if (checkGoalReached(newRow, newCol)) {
+    // check if player hits obstacle
+    if (checkForObstacles(newRow, newCol, newMCol)) {
+        return;
+    }
+
+    // check if goal is reached
+    if (checkGoalReached(newRow, newCol, newMCol)) {
+        mainGrid.querySelector(`#main-${playerID}`).textContent = "";
+        secGrid.querySelector(`#sec-${mirroredID}`).textContent = "";
         console.log("Game Won!");
         return;
     }
@@ -246,6 +255,7 @@ const movePlayer = (direction) => {
 
     // re-render changes
     render();
+
     // user can continue or restarts game
 };
 
@@ -303,5 +313,11 @@ const init = () => {
 /*----------------------------- Event Listeners -----------------------------*/
 // initialise the game when start button is clicked
 // startButton.addEventListener("onclick", init);
-// movement controls : arrow buttons on screen or use keyboard arrows
 init();
+// movement controls : arrow buttons on screen or use keyboard arrows
+arrowButtons.forEach((arrowButton) => {
+    arrowButton.addEventListener("click", () => {
+        const direction = arrowButton.dataset.direction;
+        movePlayer(direction);
+    });
+});
