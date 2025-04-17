@@ -38,8 +38,13 @@ let currentHelper;
 let roundCounter;
 // const for selected map
 let selectedMap = [];
+let playerID;
 // for mirrored version of selected map
-let mirroredMap;
+let mirroredMap = [];
+let mirroredID;
+// create a variable for the x and y of player position
+let playerRow;
+let playerCol;
 
 /*------------------------ Cached Element References ------------------------*/
 // all functional icons and buttons
@@ -104,6 +109,8 @@ const populateGrid = (mapArray, gridType, gridName) => {
                     gridType.querySelector(
                         `#${gridName}-${count}`
                     ).textContent = "P";
+                    if (gridName === "main") playerID = count;
+                    if (gridName === "sec") mirroredID = count;
                 }
                 // update content to X to indicate goal when value is 3
                 if (mapArray[row][col] === 3) {
@@ -116,16 +123,22 @@ const populateGrid = (mapArray, gridType, gridName) => {
         }
     } catch (error) {
         // in case any of arguments passed is incorrect
-        // console.log(error);
+        console.log(error);
     }
 };
 
-// function for when helper is used
-const removeObstacle = () => {
-    // only can destroy an obstacle in one frid at a time
-    // either in main or grid or secondaru grid
-    // use the currentHelper variable
-    // for future enhancements : certain helper can destroy specific obstacle
+// locate the current location of the player after initiation
+const locatePlayerInit = () => {
+    // we do have the playerID, but that will be for populating the div correctly later on
+    // we need this to get the x and y axis for player movement later on
+    for (let row = 0; row < selectedMap.length; row++) {
+        for (let col = 0; col < selectedMap[row].length; col++) {
+            if (selectedMap[row][col] === 2) {
+                playerRow = row;
+                playerCol = col;
+            }
+        }
+    }
 };
 
 // move player based on user input
@@ -134,6 +147,14 @@ const movePlayer = () => {
     // user in secondary grid moves on the mirrorred direction (left = right, right = left)
     // if obstacle is hit  in either main or secondary grid,
     // user can continue or restarts game
+};
+
+// function for when helper is used
+const removeObstacle = () => {
+    // only can destroy an obstacle in one frid at a time
+    // either in main or grid or secondaru grid
+    // use the currentHelper variable
+    // for future enhancements : certain helper can destroy specific obstacle
 };
 
 // when the user loses
