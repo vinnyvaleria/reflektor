@@ -149,11 +149,37 @@ const locatePlayerInit = () => {
     }
 };
 
+// check if player hits an obstacle
+const checkForObstacles = (row, col, mCol) => {
+    // check for limits of the grid
+    if (
+        // go over top side of grid check
+        row < 0 ||
+        // go over bottom of grid check
+        row >= selectedMap.length ||
+        // go over left side of grid check
+        col < 0 ||
+        mCol < 0 ||
+        // go over right side of grid check
+        col >= selectedMap[row].length ||
+        mCol >= mirroredMap[row].length
+    ) {
+        console.log("No movement out of the grid allowed!");
+        return; // out of bounds
+    }
+
+    // if obstacle is hit  in either main or secondary grid
+    if (selectedMap[row][col] === 1 || mirroredMap[row][mCol] === 1) {
+        console.log("You have hit an obstacle!");
+        return;
+    }
+};
+
 // check if player reaches the goal
 const checkGoalReached = (row, col) => {
     if (selectedMap[row][col] === 3) {
         console.log("You have reached the goal!");
-        return `Congratulations! You have reached the goal!`;
+        return true;
     }
 };
 
@@ -189,29 +215,10 @@ const movePlayer = (direction) => {
             break;
     }
 
-    // check for limits of the grid
-    if (
-        // go over top side of grid check
-        newRow < 0 ||
-        // go over bottom of grid check
-        newRow >= selectedMap.length ||
-        // go over left side of grid check
-        newCol < 0 ||
-        newMCol < 0 ||
-        // go over right side of grid check
-        newCol >= selectedMap[newRow].length ||
-        newMCol >= mirroredMap[newRow].length
-    ) {
-        console.log("No movement out of the grid allowed!");
-        return; // out of bounds
-    }
-
-    // if obstacle is hit  in either main or secondary grid,
-    if (
-        selectedMap[newRow][newCol] === 1 ||
-        mirroredMap[newRow][newMCol] === 1
-    ) {
-        console.log("You have hit an obstacle!");
+    checkForObstacles(newRow, newCol, newMCol);
+    if (checkGoalReached(newRow, newCol)) {
+        console.log("Game Won!");
+        return;
     }
 
     // update grid for main and secondary
