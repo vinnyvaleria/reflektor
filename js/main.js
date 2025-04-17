@@ -231,6 +231,9 @@ const movePlayer = (direction) => {
     // set the value to 0 within each grid to indicate player has moved
     selectedMap[playerRow][playerCol] = 0;
     mirroredMap[playerRow][mirroredCol] = 0;
+    // remove existing player class
+    mainGrid.querySelector(`#main-${playerID}`).classList.remove("player");
+    secGrid.querySelector(`#sec-${mirroredID}`).classList.remove("player");
 
     // set the value to 2 for the new position of player
     selectedMap[newRow][newCol] = 2;
