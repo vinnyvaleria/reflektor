@@ -27,19 +27,30 @@
             </p> -->
         </div>
         <div class="game-grids-container">
-            <div class="main-grid"></div>
+            <div class="left-grid-container">
+                <div class="main-grid"></div>
+                <div class="arrows">
+                    <!-- trying to use data-* attributes -->
+                    <!-- keeping the class as it is in case needed for styling (shorter with class than data-* attributes) -->
+                    <button class="arrow up" data-direction="up">Up</button
+                    ><br />
+                    <button class="arrow left" data-direction="left">
+                        Left
+                    </button>
+                    <button class="arrow down" data-direction="down">
+                        Down
+                    </button>
+                    <button class="arrow right" data-direction="right">
+                        Right
+                    </button>
+                </div>
+            </div>
             <div class="helpers">
                 <button class="helper hammer-icon">Hammer</button>
             </div>
-            <div class="secondary-grid"></div>
-        </div>
-        <div class="arrows">
-            <!-- trying to use data-* attributes -->
-            <!-- keeping the class as it is in case needed for styling (shorter with class than data-* attributes) -->
-            <button class="arrow up" data-direction="up">Up</button><br />
-            <button class="arrow left" data-direction="left">Left</button>
-            <button class="arrow down" data-direction="down">Down</button>
-            <button class="arrow right" data-direction="right">Right</button>
+            <div class="right-grid-container">
+                <div class="secondary-grid"></div>
+            </div>
         </div>
     </body>
 </html>

@@ -53,3 +53,9 @@ body > div,
 .obstacle {
     background-color: var(--black);
 }
+
+.arrows {
+    text-align: center;
+    padding: 1rem;
+    align-content: center;
+}
