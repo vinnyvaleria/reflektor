@@ -36,6 +36,7 @@ const OBSTACLES = ["wall", "tree", "grass"];
 /*-------------------------------- Variables --------------------------------*/
 // for initial build, only one helper is available (hammer)
 // in the future, more will be added
+let currentDifficulty;
 let currentHelper;
 let roundCounter;
 // const for selected map
@@ -203,7 +204,7 @@ const checkForObstacles = (row, col, mCol) => {
 };
 
 // check if player reaches the goal
-const checkGoalReached = (row, col, mCol) => {
+const checkGoalReached = (row, col) => {
     if (selectedMap[row][col] === 3) {
         // replace text within grid box to won
         mainGrid.querySelector(".goal").textContent = "Won!";
@@ -261,7 +262,7 @@ const movePlayer = (direction) => {
     }
 
     // check if goal is reached
-    if (checkGoalReached(newRow, newCol, newMCol)) {
+    if (checkGoalReached(newRow, newCol)) {
         mainGrid.querySelector(`#main-${playerID}`).textContent = "";
         secGrid.querySelector(`#sec-${mirroredID}`).textContent = "";
         console.log("Game Won!");
@@ -291,13 +292,35 @@ const movePlayer = (direction) => {
     // user can continue or restarts game
 };
 
-// remove helper if it is no longer available
-
 // function for when helper is used
 const removeObstacle = () => {
+    // check if currentHelper or removeId is blank
+    if (!currentHelper || !removeID) return;
     // only can destroy an obstacle in one grid at a time
     // either in main or grid or secondary grid
     const removeElement = document.getElementById(removeID);
+
+    // derive the row and column based on removeID to update the mapArrays
+    const [gridName, indexStr] = removeID.split("-");
+    let gridType;
+    // console.log(gridType); --> validated to return either main or sec!
+    if (gridName === "main") {
+        gridType = selectedMap;
+    } else if (gridName === "sec") {
+        gridType = mirroredMap;
+    } else {
+        return;
+    }
+
+    // conver index type from string to number
+    const index = parseInt(indexStr);
+    // the Math.floor() static method always rounds down and
+    // returns the largest integer less than or equal to a given number
+    const row = Math.floor(index / currentDifficulty);
+    // console.log(row);
+    // use remainder function to get the col value
+    const col = index % currentDifficulty;
+
     // use the currentHelper variable
     // for future enhancements : certain helper can destroy specific obstacle
     switch (currentHelper) {
@@ -307,8 +330,10 @@ const removeObstacle = () => {
                     // remove existing class related to obstacle
                     removeElement.classList.remove("obstacle");
                     removeElement.classList.remove(OBSTACLES[0]);
+                    // update mapArray
+                    gridType[row][col] = 0;
                     hammerAvailable--;
-                    console.log(`hammer available : ${hammerAvailable}`);
+                    // console.log(`hammer available : ${hammerAvailable}`);
                 }
             }
             break;
@@ -317,8 +342,9 @@ const removeObstacle = () => {
                 if (removeElement.classList.contains(OBSTACLES[1])) {
                     removeElement.classList.remove("obstacle");
                     removeElement.classList.remove(OBSTACLES[1]);
+                    gridType[row][col] = 0;
                     axeAvailable--;
-                    console.log(`axe available : ${axeAvailable}`);
+                    // console.log(`axe available : ${axeAvailable}`);
                 }
             }
             break;
@@ -327,8 +353,9 @@ const removeObstacle = () => {
                 if (removeElement.classList.contains(OBSTACLES[2])) {
                     removeElement.classList.remove("obstacle");
                     removeElement.classList.remove(OBSTACLES[2]);
+                    gridType[row][col] = 0;
                     sickleAvailable--;
-                    console.log(`sickle available : ${sickleAvailable}`);
+                    // console.log(`sickle available : ${sickleAvailable}`);
                 }
             }
             break;
@@ -372,7 +399,8 @@ const render = () => {
 // initialise game
 const init = () => {
     console.log("Game initialised!");
-    generateGrid(LEVEL_EASY);
+    currentDifficulty = LEVEL_EASY;
+    generateGrid(currentDifficulty);
     selectedMap = randomiseMap();
     // console.log(`selectedMap : ${selectedMap}`); --> validated correct map based on randomIndex pointed!
     mirroredMap = mirrorSelectedMap();
