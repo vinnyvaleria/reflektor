@@ -126,13 +126,6 @@ const updateGrid = (mapArray, gridType, gridName) => {
                     gridType
                         .querySelector(`#${gridName}-${count}`)
                         .classList.add("obstacle");
-                    // randomise obstacles set
-                    const obsIndex = Math.floor(
-                        Math.random() * OBSTACLES.length
-                    );
-                    gridType
-                        .querySelector(`#${gridName}-${count}`)
-                        .classList.add(`${OBSTACLES[obsIndex]}`);
                 }
                 // update the text in div to P in grid if value is 2
                 if (mapArray[row][col] === 2) {
@@ -161,6 +154,17 @@ const updateGrid = (mapArray, gridType, gridName) => {
         // in case any of arguments passed is incorrect
         // console.log(error);
     }
+};
+
+// create separate function to randomise the obstacles rendered
+const randomiseObstacles = () => {
+    const obstacles = document.querySelectorAll(".obstacle");
+
+    obstacles.forEach((obstacle) => {
+        // randomise obstacles set
+        const obsIndex = Math.floor(Math.random() * OBSTACLES.length);
+        obstacle.classList.add(`${OBSTACLES[obsIndex]}`);
+    });
 };
 
 // locate the current location of the player after initiation
@@ -402,6 +406,7 @@ const init = () => {
     // assign mirroreCol variable
     mirroredCol = mirroredMap[playerRow].indexOf(2);
     render();
+    randomiseObstacles();
 };
 
 /*----------------------------- Event Listeners -----------------------------*/
@@ -456,7 +461,7 @@ document.addEventListener("keydown", (e) => {
             currentHelper = "sickle";
             break;
     }
-    console.log(currentHelper);
+    // console.log(currentHelper); --> validated and correctly assigned!
 });
 
 // add event listener to the mai
