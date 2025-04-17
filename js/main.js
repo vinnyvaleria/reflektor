@@ -187,8 +187,13 @@ const checkForObstacles = (row, col, mCol) => {
 // check if player reaches the goal
 const checkGoalReached = (row, col, mCol) => {
     if (selectedMap[row][col] === 3) {
+        // replace text within grid box to won
         mainGrid.querySelector(".goal").textContent = "Won!";
         secGrid.querySelector(".goal").textContent = "Won!";
+        // add new class won for styling
+        mainGrid.querySelector(".goal").classList.add("won");
+        secGrid.querySelector(".goal").classList.add("won");
+
         console.log("You have reached the goal!");
         hasWon = true;
         return true;
