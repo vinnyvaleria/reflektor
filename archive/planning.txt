@@ -17,6 +17,9 @@ MVP
 - WH : Maybe instead of recording steps, use round until user wins
 - WH : Create 3 different grids for now (static)
 - WH : Utilise handicap with keybind instead of mouse only
+- SQ : We can only stick with local leaderboard for now (since globally is not taught yet)
+- Jay : Make main grid pops than the other
+- SQ : Arrow buttons under main grid 
 
 Enhancements
 - Can be a 2-player game in the future, but turn-based.
