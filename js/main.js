@@ -36,8 +36,10 @@ const LEVEL_HARD = 9;
 // in the future, more will be added
 var currentHelper;
 var roundCounter;
-// variable for selected map
+// const for selected map
 var selectedMap = [];
+// for mirrored version of selected map
+var mirroredMap;
 
 /*------------------------ Cached Element References ------------------------*/
 // all functional icons and buttons
@@ -71,6 +73,13 @@ const randomiseMap = () => {
     const randomIndex = Math.floor(Math.random() * maps_EASY.length);
     // console.log(`randomIndex : ${randomIndex}`); --> validated to work!
     return maps_EASY[randomIndex];
+};
+
+// mirror the selectedMap and store into var mirroredMap
+const mirrorSelectedMap = () => {
+    // for each row in the selectedMap, reverse the order (x-axis mirror)
+    // use ...row otherwise the selectedMap will become reversed instead
+    return selectedMap.map((row) => [...row].reverse());
 };
 
 // create a function to populate the grids with the obstacles
@@ -119,7 +128,9 @@ const playGame = () => {};
 const init = () => {
     generateGrid(LEVEL_EASY);
     selectedMap = randomiseMap();
-    // console.log(selectedMap); --> validated correct map based on randomIndex pointed!
+    // console.log(`selectedMap : ${selectedMap}`); --> validated correct map based on randomIndex pointed!
+    mirroredMap = mirrorSelectedMap();
+    // console.log(`mirroredMap : ${mirroredMap}`); --> validated selectedMap mirrored correctly
 };
 
 // render the game
