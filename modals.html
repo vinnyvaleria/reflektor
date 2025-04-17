@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./css/style.css" />
+        <script defer src="./js/main.js"></script>
+        <title>Reflektor</title>
+    </head>
+    <body>
+        <div class="modal">
+            <div class="modal-header">
+                <p class="modal-title"></p>
+                <button class="close-icon"></button>
+            </div>
+            <div class="modal-content">
+                <!-- Modal 1 : Pause -->
+                <div class="modal-pause">
+                    <button class="home-icon">Home</button>
+                    <button class="reset-icon">Reset</button>
+                    <button class="leaderboard-icon">Leaderboard</button>
+                </div>
+                <!-- Modal 2 : Leaderboard -->
+                <div class="modal-leaderboard">
+                    <!-- Leaderboard tab links -->
+                    <div class="leaderboard-tabs">
+                        <button class="round-tab-link">Round</button>
+                        <button class="timer-tab-link">Timer</button>
+                        <button class="steps-tab-link">Steps</button>
+                    </div>
+                    <!-- Leaderboard tab content -->
+                    <div id="Round" class="tab-content"></div>
+                    <div id="Time" class="tab-content"></div>
+                    <div id="Steps" class="tab-content"></div>
+                </div>
+                <!-- Modal 3 : How To Play (rules) -->
+                <div class="modal-rules">
+                    <p>
+                        The game consists of 2 grids : <br />
+                        Main (left) and Secondary (right)
+                    </p>
+                    <p>
+                        Your goal is to move both characters on the Main grid
+                        and Secondary grid each to destination X.
+                    </p>
+                    <ol>
+                        <li>
+                            You will only be able to control the character in
+                            Main grid.
+                        </li>
+                        <li>
+                            Your other character in the Secondary grid will move
+                            in a mirrored direction.
+                        </li>
+                        <li>
+                            Use the arrow buttons on the screen or on your
+                            keyboard to move the characters.
+                        </li>
+                        <li>
+                            If you hit any of the obstacles (brick wall, grass
+                            or big tree), it will be GAME OVER!
+                        </li>
+                        <li>Have fun and be on the leaderboard!</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

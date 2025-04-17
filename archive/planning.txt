@@ -1,0 +1,53 @@
+[ Rough ideas ]
+
+MVP
+- Grid mirror maze. Pixel style.
+- Two characters will move, but user controls the main.
+- Secondary character will mirror the movement of main. 
+- To win, must reach the goal X. One level for now.
+- Obstacles spawn differently in main grid and secondary grid.
+- Obstacles to be limited by numbers per grid. Will need a minimum and maximum amount.
+- User help : can only be appied to either main or secondary grid.
+    > Hammer (to destroy the wall) x 1
+    > Axe (to destroy tree) x 1
+- If user wins the game, they can input their name in the ranking board.
+- Ranking board to record the time and steps taken.
+- Game over if the player hits the obstacles in main or secondary grid.
+- Movement can be done with arrow keys on keyboard or on screen.
+- WH : Maybe instead of recording steps, use round until user wins
+- WH : Create 3 different grids for now (static)
+- WH : Utilise handicap with keybind instead of mouse only
+- SQ : We can only stick with local leaderboard for now (since globally is not taught yet)
+- Jay : Make main grid pops than the other
+- SQ : Arrow buttons under main grid 
+
+Enhancements
+- Can be a 2-player game in the future, but turn-based.
+- Difficulty level : beginner (5x5), intermediate (7x7), advanced (9x9), expert (9x9 - more obstacles)
+- 2 types of ranking board : shortest steps taken and shortest time taken
+- Responsive design
+- Light/dark mode
+- Animation when the level is won (like confettit or if it is game over)
+- Store data on client machine (localStorage): Maybe like local ranking?
+- Choose a player on which screen: be the girl or boy
+- Create a monster to chase player character so they don't take too long
+
+Graphic needed
+- Logo
+- Game background
+- 2 players face
+- Obstacles : wall, tree, tall grass
+- Help : hammer, axe, sickle
+- Information font (so user can view the game instructions mid game if needed)
+- Keyboard arrows
+
+Deliverables
+- Project planning deliverable
+- GitHub repo deliverable
+- Presentation deck (for 5 minutes)
+- (Optional) Deployed app link deliverable
+
+What to do 
+- Planning process thoughts: User input, Update game state, Render/draw on screen output
+- Prepare pseudocode
+- Separate game state update and rendering under functions
