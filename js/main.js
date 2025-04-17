@@ -45,6 +45,8 @@ let mirroredID;
 // create a variable for the x and y of player position
 let playerRow;
 let playerCol;
+// only require col for mirrored position
+let mirroredCol;
 
 /*------------------------ Cached Element References ------------------------*/
 // all functional icons and buttons
@@ -142,10 +144,66 @@ const locatePlayerInit = () => {
 };
 
 // move player based on user input
-const movePlayer = () => {
+const movePlayer = (direction) => {
     // user in main grid will move on the correct direction
-    // user in secondary grid moves on the mirrorred direction (left = right, right = left)
+    let newRow = playerRow; // y-axis
+    let newCol = playerCol; // x-axis
+    mirroredCol = mirroredMap[playerRow].indexOf(2);
+    let newMCol = mirroredCol;
+    // console.log(mirroredCol);    --> validated correct index returned
+
+    switch (direction) {
+        // up = y-axis minus 1
+        case "up":
+            newRow--;
+            break;
+        // down = y-axis plus 1
+        case "down":
+            newRow++;
+            break;
+        // left = x-axis minus 1
+        // mirrored to be opposite direction
+        case "left":
+            newCol--;
+            newMCol++;
+            break;
+        // right = x-axis plus 1
+        case "right":
+            newCol++;
+            newMCol--;
+            break;
+        default:
+            break;
+    }
+
+    // check for limits of the grid
+    if (
+        // go over top side of grid check
+        newRow < 0 ||
+        // go over bottom of grid check
+        newRow >= selectedMap.length ||
+        // go over left side of grid check
+        newCol < 0 ||
+        newMCol < 0 ||
+        // go over right side of grid check
+        newCol >= selectedMap[newRow].length ||
+        newMCol >= mirroredMap[newRow].length
+    ) {
+        return; // out of bounds
+    }
+
+    let newMirroredCol = selectedMap[playerRow].length - 1 - playerCol;
     // if obstacle is hit  in either main or secondary grid,
+    if (
+        selectedMap[newRow][newCol] === 1 ||
+        mirroredMap[newRow][newMirroredCol] === 1
+    ) {
+        console.log("You have hit an obstacle!");
+    }
+
+    // update grid for main and secondary
+    // set the value to 0 when player moves
+
     // user can continue or restarts game
 };
 
@@ -194,6 +252,7 @@ const init = () => {
     // console.log(`selectedMap : ${selectedMap}`); --> validated correct map based on randomIndex pointed!
     mirroredMap = mirrorSelectedMap();
     // console.log(`mirroredMap : ${mirroredMap}`); --> validated selectedMap mirrored correctly
+    locatePlayerInit();
     render();
 };
 
