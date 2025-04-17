@@ -119,3 +119,7 @@ body > div,
     padding: 1rem;
     align-content: center;
 }
+
+.hide {
+    display: none;
+}

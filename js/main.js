@@ -56,6 +56,10 @@ let hasWon = false;
 let removeID;
 // for event listener on the grid, we can utilise sqr class
 let sqrElements;
+// set variables on how many time can the helper be used
+let hammerAvailable = 1;
+let axeAvailable = 1;
+let sickleAvailable = 1;
 
 /*------------------------ Cached Element References ------------------------*/
 // all functional icons and buttons
@@ -287,12 +291,53 @@ const movePlayer = (direction) => {
     // user can continue or restarts game
 };
 
+// remove helper if it is no longer available
+
 // function for when helper is used
 const removeObstacle = () => {
-    // only can destroy an obstacle in one frid at a time
-    // either in main or grid or secondaru grid
+    // only can destroy an obstacle in one grid at a time
+    // either in main or grid or secondary grid
+    const removeElement = document.getElementById(removeID);
     // use the currentHelper variable
     // for future enhancements : certain helper can destroy specific obstacle
+    switch (currentHelper) {
+        case "hammer":
+            if (hammerAvailable > 0) {
+                if (removeElement.classList.contains(OBSTACLES[0])) {
+                    // remove existing class related to obstacle
+                    removeElement.classList.remove("obstacle");
+                    removeElement.classList.remove(OBSTACLES[0]);
+                    hammerAvailable--;
+                    console.log(`hammer available : ${hammerAvailable}`);
+                }
+            }
+            break;
+        case "axe":
+            if (axeAvailable > 0) {
+                if (removeElement.classList.contains(OBSTACLES[1])) {
+                    removeElement.classList.remove("obstacle");
+                    removeElement.classList.remove(OBSTACLES[1]);
+                    axeAvailable--;
+                    console.log(`axe available : ${axeAvailable}`);
+                }
+            }
+            break;
+        case "sickle":
+            if (sickleAvailable > 0) {
+                if (removeElement.classList.contains(OBSTACLES[2])) {
+                    removeElement.classList.remove("obstacle");
+                    removeElement.classList.remove(OBSTACLES[2]);
+                    sickleAvailable--;
+                    console.log(`sickle available : ${sickleAvailable}`);
+                }
+            }
+            break;
+        default:
+            console.log(
+                `You cannot remove this obstacle with ${currentHelper}`
+            );
+            break;
+    }
 };
 
 // when the user loses
@@ -380,7 +425,12 @@ helperButtons.forEach((helperButton) => {
 // add event listener to the mai
 sqrElements.forEach((sqr) => {
     sqr.addEventListener("click", (e) => {
+        if (currentHelper === undefined) {
+            console.log("You must select a helper first!");
+            return;
+        }
         removeID = e.target.id;
-        console.log(removeID);
+        removeObstacle();
+        // console.log(removeID); --> validated correct id assigned!
     });
 });
