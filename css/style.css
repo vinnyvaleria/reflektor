@@ -87,14 +87,17 @@ body > div,
 
 .wall {
     background-image: url(../assets/images/wall.png);
+    background-size: contain;
 }
 
 .tree {
     background-image: url(../assets/images/tree.png);
+    background-size: contain;
 }
 
 .grass {
     background-image: url(../assets/images/grass.png);
+    background-size: contain;
 }
 
 .player,
