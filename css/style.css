@@ -83,21 +83,8 @@ body > div,
 
 .obstacle {
     background-color: var(--blue);
-}
-
-.obstacle.wall {
-    background-image: url(../assets/images/obstacles/pixel-wall.png);
-    background-size: contain;
-}
-
-.obstacle.tree {
-    background-image: url(../assets/images/obstacles/tree.png);
-    background-size: contain;
-}
-
-.obstacle.grass {
-    background-image: url(../assets/images/obstacles/pixel-grass.png);
-    background-size: contain;
+    width: 70px;
+    height: 70px;
 }
 
 .player,
@@ -133,21 +120,6 @@ body > div,
 .helper:hover {
     cursor: pointer;
     filter: drop-shadow(2px 4px var(--primary));
-}
-
-.helper.hammer {
-    background-image: url(../assets/images/helpers/hammer.png);
-    background-size: contain;
-}
-
-.helper.axe {
-    background-image: url(../assets/images/helpers/axe.png);
-    background-size: contain;
-}
-
-.helper.sickle {
-    background-image: url(../assets/images/helpers/sickle.png);
-    background-size: contain;
 }
 
 .arrows {

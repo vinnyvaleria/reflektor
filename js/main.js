@@ -32,6 +32,7 @@ const LEVEL_MEDIUM = 7;
 const LEVEL_HARD = 9;
 // available obstacles
 const OBSTACLES = ["wall", "tree", "grass"];
+const HELPER = ["hammer", "axe", "sickle"];
 
 /*-------------------------------- Variables --------------------------------*/
 // for initial build, only one helper is available (hammer)
@@ -180,6 +181,7 @@ const randomiseObstacles = () => {
         // randomise obstacles set
         const obsIndex = Math.floor(Math.random() * OBSTACLES.length);
         obstacle.classList.add(`${OBSTACLES[obsIndex]}`);
+        obstacle.innerHTML = `<img src="./assets/images/obstacles/pixel-${OBSTACLES[obsIndex]}.png" width="70px" height="70px" alt="obstacle : ${OBSTACLES[obsIndex]}">`;
     });
 };
 
@@ -343,43 +345,58 @@ const removeObstacle = () => {
 
     // use the currentHelper variable
     // for future enhancements : certain helper can destroy specific obstacle
-    switch (currentHelper) {
-        case "hammer":
-            if (hammerAvailable > 0) {
-                if (removeElement.classList.contains(OBSTACLES[0])) {
-                    // remove existing class related to obstacle
-                    removeElement.classList.remove("obstacle");
-                    removeElement.classList.remove(OBSTACLES[0]);
-                    // update mapArray
-                    gridType[row][col] = 0;
-                    hammerAvailable--;
-                    // console.log(`hammer available : ${hammerAvailable}`);
-                }
-            }
-            break;
-        case "axe":
-            if (axeAvailable > 0) {
-                if (removeElement.classList.contains(OBSTACLES[1])) {
-                    removeElement.classList.remove("obstacle");
-                    removeElement.classList.remove(OBSTACLES[1]);
-                    gridType[row][col] = 0;
-                    axeAvailable--;
-                    // console.log(`axe available : ${axeAvailable}`);
-                }
-            }
-            break;
-        case "sickle":
-            if (sickleAvailable > 0) {
-                if (removeElement.classList.contains(OBSTACLES[2])) {
-                    removeElement.classList.remove("obstacle");
-                    removeElement.classList.remove(OBSTACLES[2]);
-                    gridType[row][col] = 0;
-                    sickleAvailable--;
-                    // console.log(`sickle available : ${sickleAvailable}`);
-                }
-            }
-            break;
+    const helperIndex = HELPER.indexOf(currentHelper);
+
+    if (HELPER[helperIndex] + "Available" > 0) {
+        if (removeElement.classList.contains(OBSTACLES[helperIndex])) {
+            // remove existing class related to obstacle
+            removeElement.classList.remove("obstacle");
+            removeElement.classList.remove(OBSTACLES[helperIndex]);
+            removeElement.innerHTML = "";
+            // update mapArray
+            gridType[row][col] = 0;
+            hammerAvailable--;
+            // console.log(`hammer available : ${hammerAvailable}`);
+        }
     }
+
+    // switch (currentHelper) {
+    //     case "hammer":
+    //         if (hammerAvailable > 0) {
+    //             if (removeElement.classList.contains(OBSTACLES[0])) {
+    //                 // remove existing class related to obstacle
+    //                 removeElement.classList.remove("obstacle");
+    //                 removeElement.classList.remove(OBSTACLES[0]);
+    //                 // update mapArray
+    //                 gridType[row][col] = 0;
+    //                 hammerAvailable--;
+    //                 // console.log(`hammer available : ${hammerAvailable}`);
+    //             }
+    //         }
+    //         break;
+    //     case "axe":
+    //         if (axeAvailable > 0) {
+    //             if (removeElement.classList.contains(OBSTACLES[1])) {
+    //                 removeElement.classList.remove("obstacle");
+    //                 removeElement.classList.remove(OBSTACLES[1]);
+    //                 gridType[row][col] = 0;
+    //                 axeAvailable--;
+    //                 // console.log(`axe available : ${axeAvailable}`);
+    //             }
+    //         }
+    //         break;
+    //     case "sickle":
+    //         if (sickleAvailable > 0) {
+    //             if (removeElement.classList.contains(OBSTACLES[2])) {
+    //                 removeElement.classList.remove("obstacle");
+    //                 removeElement.classList.remove(OBSTACLES[2]);
+    //                 gridType[row][col] = 0;
+    //                 sickleAvailable--;
+    //                 // console.log(`sickle available : ${sickleAvailable}`);
+    //             }
+    //         }
+    //         break;
+    // }
 };
 
 // when the user loses
@@ -467,13 +484,13 @@ helperButtons.forEach((helperButton) => {
 document.addEventListener("keydown", (e) => {
     switch (e.key) {
         case "1":
-            currentHelper = "hammer";
+            currentHelper = HELPER[0];
             break;
         case "2":
-            currentHelper = "axe";
+            currentHelper = HELPER[1];
             break;
         case "3":
-            currentHelper = "sickle";
+            currentHelper = HELPER[2];
             break;
     }
     // console.log(currentHelper);  --> validated and correctly assigned!
