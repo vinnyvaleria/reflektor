@@ -82,21 +82,21 @@ body > div,
 }
 
 .obstacle {
-    background-color: var(--black);
+    background-color: var(--blue);
 }
 
-.wall {
-    background-image: url(../assets/images/wall.png);
+.obstacle.wall {
+    background-image: url(../assets/images/obstacles/wall.png);
     background-size: contain;
 }
 
-.tree {
-    background-image: url(../assets/images/tree.png);
+.obstacle.tree {
+    background-image: url(../assets/images/obstacles/tree.png);
     background-size: contain;
 }
 
-.grass {
-    background-image: url(../assets/images/grass.png);
+.obstacle.grass {
+    background-image: url(../assets/images/obstacles/grass.png);
     background-size: contain;
 }
 
@@ -123,7 +123,31 @@ body > div,
 }
 
 .helper {
-    margin: 2rem 0.5rem;
+    margin: 1rem 0.5rem;
+    min-width: 70px;
+    min-height: 70px;
+    background-color: transparent;
+    border: 0;
+}
+
+.helper:hover {
+    cursor: pointer;
+    filter: drop-shadow(2px 4px var(--primary));
+}
+
+.helper.hammer {
+    background-image: url(../assets/images/helpers/hammer.png);
+    background-size: contain;
+}
+
+.helper.axe {
+    background-image: url(../assets/images/helpers/axe.png);
+    background-size: contain;
+}
+
+.helper.sickle {
+    background-image: url(../assets/images/helpers/sickle.png);
+    background-size: contain;
 }
 
 .arrows {

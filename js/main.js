@@ -468,7 +468,7 @@ document.addEventListener("keydown", (e) => {
             currentHelper = "sickle";
             break;
     }
-    // console.log(currentHelper); --> validated and correctly assigned!
+    // console.log(currentHelper);  --> validated and correctly assigned!
 });
 
 // add event listener to the mai
