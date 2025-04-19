@@ -231,6 +231,7 @@ const checkGoalReached = (row, col) => {
 };
 
 // move player based on user input
+// this is the main function for the play
 const movePlayer = (direction) => {
     if (hasWon) {
         console.log("You have won! No more move allowed!");
@@ -390,9 +391,6 @@ const continueGame = () => {
 
 // reset the game
 const resetGame = () => {};
-
-// play the game
-const playGame = () => {};
 
 // render the game
 const render = () => {

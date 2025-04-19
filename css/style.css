@@ -86,7 +86,7 @@ body > div,
 }
 
 .obstacle.wall {
-    background-image: url(../assets/images/obstacles/wall.png);
+    background-image: url(../assets/images/obstacles/pixel-wall.png);
     background-size: contain;
 }
 
@@ -96,7 +96,7 @@ body > div,
 }
 
 .obstacle.grass {
-    background-image: url(../assets/images/obstacles/grass.png);
+    background-image: url(../assets/images/obstacles/pixel-grass.png);
     background-size: contain;
 }
 

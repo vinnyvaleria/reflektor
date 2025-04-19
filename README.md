@@ -3,3 +3,7 @@
 Mirror maze game which is browser-based for your enjoyment!
 
 Initial Wireframe can be viewed [here](https://www.figma.com/proto/qpGbyDPbEGoV2TerV8xQ9z/Reflektor-Wireframe?node-id=0-1&t=EPDrIuBjXgTwC5Xa-1)!
+
+## References & Credits
+
+-   All assets are drawn by me 🙏, pixelated by [Pixel It](https://giventofly.github.io/pixelit/).

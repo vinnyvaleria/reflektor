@@ -20,6 +20,8 @@ MVP
 - SQ : We can only stick with local leaderboard for now (since globally is not taught yet)
 - Jay : Make main grid pops than the other
 - SQ : Arrow buttons under main grid 
+- SQ : The obstacles need to be collected in the grid itself
+- SQ : Make sure to comment out the console log at the end
 
 Enhancements
 - Can be a 2-player game in the future, but turn-based.
