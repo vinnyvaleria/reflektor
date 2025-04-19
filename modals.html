@@ -9,19 +9,29 @@
         <title>Reflektor</title>
     </head>
     <body>
-        <div class="modal">
+        <!-- Modal 1 : Pause -->
+        <div class="modal" id="PauseModal">
             <div class="modal-header">
                 <p class="modal-title"></p>
                 <button class="close"></button>
             </div>
-            <div class="modal-content">
-                <!-- Modal 1 : Pause -->
+            <div class="modal-body">
                 <div class="modal-pause">
-                    <button class="home">Home</button>
+                    <button class="continue">Continue</button>
                     <button class="reset">Reset</button>
+                    <button class="home">Home</button>
                     <button class="leaderboard">Leaderboard</button>
                 </div>
-                <!-- Modal 2 : Leaderboard -->
+            </div>
+        </div>
+
+        <!-- Modal 2 : Leaderboard -->
+        <div class="modal" id="LeaderboardModal">
+            <div class="modal-header">
+                <p class="modal-title"></p>
+                <button class="close"></button>
+            </div>
+            <div class="modal-body">
                 <div class="modal-leaderboard">
                     <!-- Leaderboard tab links -->
                     <div class="leaderboard-tabs">
@@ -34,7 +44,16 @@
                     <div id="Time" class="tab-content"></div>
                     <div id="Steps" class="tab-content"></div>
                 </div>
-                <!-- Modal 3 : How To Play (rules) -->
+            </div>
+        </div>
+
+        <!-- Modal 3 : How To Play (rules) -->
+        <div class="modal" id="RulesModal">
+            <div class="modal-header">
+                <p class="modal-title"></p>
+                <button class="close"></button>
+            </div>
+            <div class="modal-body">
                 <div class="modal-rules">
                     <p>
                         The game consists of 2 grids : <br />
@@ -63,6 +82,20 @@
                         </li>
                         <li>Have fun and be on the leaderboard!</li>
                     </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 4 : Game Over -->
+        <div class="modal" id="GameOverModal">
+            <div class="modal-header">
+                <p class="modal-title"></p>
+                <button class="close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-game-over">
+                    <button class="continue">Continue</button>
+                    <button class="reset">Reset</button>
                 </div>
             </div>
         </div>

@@ -65,7 +65,7 @@ let sickleAvailable = 1;
 /*------------------------ Cached Element References ------------------------*/
 // all functional icons and buttons
 const startButton = document.querySelector(".start-button");
-const leaderboardButton = document.querySelector(".leaderboard-icon");
+const leaderboardButton = document.querySelector(".leaderboard");
 const resetButton = document.querySelector(".reset");
 const rulesButton = document.querySelector(".rules");
 const closeButton = document.querySelector(".close");
@@ -87,6 +87,9 @@ const generateGrid = (gridSize) => {
     }
     sqrElements = document.querySelectorAll(".sqr");
 };
+
+// open modal when button is clicked
+const openModal = (button) => {};
 
 // randomise map used for the user to play
 const randomiseMap = () => {
