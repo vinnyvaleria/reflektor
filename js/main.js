@@ -59,9 +59,8 @@ let removeID;
 // for event listener on the grid, we can utilise sqr class
 let sqrElements;
 // set variables on how many time can the helper be used
-let hammerAvailable = 1;
-let axeAvailable = 1;
-let sickleAvailable = 1;
+// based on HELPER = ["hammer", "axe", "sickle"];
+let helperAvailability = [1, 1, 1];
 
 /*------------------------ Cached Element References ------------------------*/
 // play buttons
@@ -181,7 +180,11 @@ const randomiseObstacles = () => {
         // randomise obstacles set
         const obsIndex = Math.floor(Math.random() * OBSTACLES.length);
         obstacle.classList.add(`${OBSTACLES[obsIndex]}`);
-        obstacle.innerHTML = `<img src="./assets/images/obstacles/pixel-${OBSTACLES[obsIndex]}.png" width="70px" height="70px" alt="obstacle : ${OBSTACLES[obsIndex]}">`;
+
+        // add image element within obstacle div
+        const obstacleID = obstacle.getAttribute("id");
+        // console.log(obstacleID);
+        obstacle.innerHTML = `<img src="./assets/images/obstacles/pixel-${OBSTACLES[obsIndex]}.png" width="70px" height="70px" alt="obstacle : ${OBSTACLES[obsIndex]}" id="obs-${obstacleID}">`;
     });
 };
 
@@ -318,6 +321,14 @@ const removeObstacle = () => {
     // check if currentHelper or removeId is blank
     // check if game is won
     if (!currentHelper || !removeID || hasWon) return;
+
+    if (removeID.startsWith("obs-")) {
+        // remove the 'obs-' from removeID
+        // this is because if the image is png and has some clear spaces
+        // removeID may be obs-main-0 or main-0
+        removeID = removeID.slice(4);
+    }
+
     // only can destroy an obstacle in one grid at a time
     // either in main or grid or secondary grid
     const removeElement = document.getElementById(removeID);
@@ -347,7 +358,7 @@ const removeObstacle = () => {
     // for future enhancements : certain helper can destroy specific obstacle
     const helperIndex = HELPER.indexOf(currentHelper);
 
-    if (HELPER[helperIndex] + "Available" > 0) {
+    if (helperAvailability[helperIndex] > 0) {
         if (removeElement.classList.contains(OBSTACLES[helperIndex])) {
             // remove existing class related to obstacle
             removeElement.classList.remove("obstacle");
@@ -355,48 +366,12 @@ const removeObstacle = () => {
             removeElement.innerHTML = "";
             // update mapArray
             gridType[row][col] = 0;
-            hammerAvailable--;
-            // console.log(`hammer available : ${hammerAvailable}`);
+            helperAvailability[helperIndex]--;
+            console.log(
+                `${HELPER[helperIndex]} available : ${helperAvailability[helperIndex]}`
+            );
         }
     }
-
-    // switch (currentHelper) {
-    //     case "hammer":
-    //         if (hammerAvailable > 0) {
-    //             if (removeElement.classList.contains(OBSTACLES[0])) {
-    //                 // remove existing class related to obstacle
-    //                 removeElement.classList.remove("obstacle");
-    //                 removeElement.classList.remove(OBSTACLES[0]);
-    //                 // update mapArray
-    //                 gridType[row][col] = 0;
-    //                 hammerAvailable--;
-    //                 // console.log(`hammer available : ${hammerAvailable}`);
-    //             }
-    //         }
-    //         break;
-    //     case "axe":
-    //         if (axeAvailable > 0) {
-    //             if (removeElement.classList.contains(OBSTACLES[1])) {
-    //                 removeElement.classList.remove("obstacle");
-    //                 removeElement.classList.remove(OBSTACLES[1]);
-    //                 gridType[row][col] = 0;
-    //                 axeAvailable--;
-    //                 // console.log(`axe available : ${axeAvailable}`);
-    //             }
-    //         }
-    //         break;
-    //     case "sickle":
-    //         if (sickleAvailable > 0) {
-    //             if (removeElement.classList.contains(OBSTACLES[2])) {
-    //                 removeElement.classList.remove("obstacle");
-    //                 removeElement.classList.remove(OBSTACLES[2]);
-    //                 gridType[row][col] = 0;
-    //                 sickleAvailable--;
-    //                 // console.log(`sickle available : ${sickleAvailable}`);
-    //             }
-    //         }
-    //         break;
-    // }
 };
 
 // when the user loses
@@ -493,18 +468,18 @@ document.addEventListener("keydown", (e) => {
             currentHelper = HELPER[2];
             break;
     }
-    // console.log(currentHelper);  --> validated and correctly assigned!
+    // console.log(currentHelper); --> validated and correctly assigned!
 });
 
 // add event listener to the main grid
 sqrElements.forEach((sqr) => {
     sqr.addEventListener("click", (e) => {
-        if (currentHelper === undefined) {
+        if (currentHelper === undefined || currentHelper === "") {
             console.log("You must select a helper first!");
             return;
         }
         removeID = e.target.id;
+        // console.log(removeID);   --> validated correct id assigned!
         removeObstacle();
-        // console.log(removeID); --> validated correct id assigned!
     });
 });
