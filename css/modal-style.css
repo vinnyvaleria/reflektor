@@ -1,0 +1,21 @@
+div.modal {
+    width: 40%;
+    border: solid 2px var(--black);
+    box-shadow: 20px 20px var(--primary);
+    margin: 2rem;
+}
+
+.modal-header,
+.modal-body {
+    padding: 1rem;
+}
+
+.modal-header {
+    border-bottom: solid 2px var(--black);
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-body > div:not(.modal-rules) {
+    text-align: center;
+}
