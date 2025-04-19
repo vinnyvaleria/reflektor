@@ -66,9 +66,9 @@ let sickleAvailable = 1;
 // all functional icons and buttons
 const startButton = document.querySelector(".start-button");
 const leaderboardButton = document.querySelector(".leaderboard-icon");
-const resetButton = document.querySelector(".reset-icon");
-const rulesButton = document.querySelector(".rules-icon");
-const closeButton = document.querySelector(".close-icon");
+const resetButton = document.querySelector(".reset");
+const rulesButton = document.querySelector(".rules");
+const closeButton = document.querySelector(".close");
 const helperButtons = document.querySelectorAll(".helper");
 const arrowButtons = document.querySelectorAll(".arrow");
 // declare cached element references for the 2 grids : main and secondary
