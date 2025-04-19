@@ -63,17 +63,22 @@ let axeAvailable = 1;
 let sickleAvailable = 1;
 
 /*------------------------ Cached Element References ------------------------*/
-// all functional icons and buttons
+// play buttons
 const startButton = document.querySelector(".start-button");
-const leaderboardButton = document.querySelector(".leaderboard");
-const resetButton = document.querySelector(".reset");
-const rulesButton = document.querySelector(".rules");
-const closeButton = document.querySelector(".close");
+const pauseButton = document.querySelector(".pause");
+const continueButton = document.querySelectorAll(".continue");
+const resetButton = document.querySelectorAll(".reset");
 const helperButtons = document.querySelectorAll(".helper");
 const arrowButtons = document.querySelectorAll(".arrow");
+
 // declare cached element references for the 2 grids : main and secondary
 const mainGrid = document.querySelector(".main-grid");
 const secGrid = document.querySelector(".secondary-grid");
+
+// modal buttons
+const closeButton = document.querySelector(".close");
+const leaderboardButton = document.querySelector(".leaderboard");
+const rulesButton = document.querySelector(".rules");
 
 /*-------------------------------- Functions --------------------------------*/
 // function to generate grid based on difficulty variable set

@@ -10,10 +10,11 @@
     </head>
     <body>
         <!-- Modal 1 : Pause -->
-        <div class="modal" id="PauseModal">
+        <div class="modal" id="pauseModal" role="dialog">
+            <!-- role is added for accessibility especially for screen readers -->
             <div class="modal-header">
                 <p class="modal-title"></p>
-                <button class="close"></button>
+                <button class="close" data-dismiss="modal">x</button>
             </div>
             <div class="modal-body">
                 <div class="modal-pause">
@@ -26,10 +27,10 @@
         </div>
 
         <!-- Modal 2 : Leaderboard -->
-        <div class="modal" id="LeaderboardModal">
+        <div class="modal" id="leaderboardModal" role="dialog">
             <div class="modal-header">
                 <p class="modal-title"></p>
-                <button class="close"></button>
+                <button class="close" data-dismiss="modal">x</button>
             </div>
             <div class="modal-body">
                 <div class="modal-leaderboard">
@@ -48,10 +49,10 @@
         </div>
 
         <!-- Modal 3 : How To Play (rules) -->
-        <div class="modal" id="RulesModal">
+        <div class="modal" id="rulesModal" role="dialog">
             <div class="modal-header">
                 <p class="modal-title"></p>
-                <button class="close"></button>
+                <button class="close" data-dismiss="modal">x</button>
             </div>
             <div class="modal-body">
                 <div class="modal-rules">
@@ -87,15 +88,18 @@
         </div>
 
         <!-- Modal 4 : Game Over -->
-        <div class="modal" id="GameOverModal">
+        <div class="modal" id="gameOverModal" role="dialog">
             <div class="modal-header">
                 <p class="modal-title"></p>
-                <button class="close"></button>
+                <button class="close" data-dismiss="modal">x</button>
             </div>
             <div class="modal-body">
                 <div class="modal-game-over">
-                    <button class="continue">Continue</button>
-                    <button class="reset">Reset</button>
+                    <p>Continue?</p>
+                    <div class="game-over-ans">
+                        <button class="continue">Yes</button>
+                        <button class="reset">No</button>
+                    </div>
                 </div>
             </div>
         </div>
