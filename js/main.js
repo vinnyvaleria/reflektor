@@ -129,14 +129,21 @@ const updateGrid = (mapArray, gridType, gridName) => {
                 }
                 // update the text in div to P in grid if value is 2
                 if (mapArray[row][col] === 2) {
-                    gridType.querySelector(
-                        `#${gridName}-${count}`
-                    ).textContent = "P";
                     gridType
                         .querySelector(`#${gridName}-${count}`)
                         .classList.add("player");
-                    if (gridName === "main") playerID = count;
-                    if (gridName === "sec") mirroredID = count;
+                    if (gridName === "main") {
+                        gridType.querySelector(
+                            `#${gridName}-${count}`
+                        ).textContent = "P";
+                        playerID = count;
+                    }
+                    if (gridName === "sec") {
+                        gridType.querySelector(
+                            `#${gridName}-${count}`
+                        ).textContent = "NPC";
+                        mirroredID = count;
+                    }
                 }
                 // update content to X to indicate goal when value is 3
                 if (mapArray[row][col] === 3) {
