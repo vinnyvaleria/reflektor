@@ -77,6 +77,7 @@ const secGrid = document.querySelector(".secondary-grid");
 
 // modal buttons
 const closeButton = document.querySelector(".close");
+const homeButton = document.querySelectorAll(".home");
 const leaderboardButton = document.querySelector(".leaderboard");
 const rulesButton = document.querySelector(".rules");
 
@@ -313,7 +314,8 @@ const movePlayer = (direction) => {
 // function for when helper is used
 const removeObstacle = () => {
     // check if currentHelper or removeId is blank
-    if (!currentHelper || !removeID) return;
+    // check if game is won
+    if (!currentHelper || !removeID || hasWon) return;
     // only can destroy an obstacle in one grid at a time
     // either in main or grid or secondary grid
     const removeElement = document.getElementById(removeID);
@@ -477,7 +479,7 @@ document.addEventListener("keydown", (e) => {
     // console.log(currentHelper);  --> validated and correctly assigned!
 });
 
-// add event listener to the mai
+// add event listener to the main grid
 sqrElements.forEach((sqr) => {
     sqr.addEventListener("click", (e) => {
         if (currentHelper === undefined) {
