@@ -46,11 +46,16 @@ p {
 	font-size: 1rem;
 }
 
-button:not(.close) {
-	text-transform: uppercase;
-	padding: 0.5rem 1rem;
+button {
+	padding: 0;
+	border: 0;
 	font-family: "Jersey 10", sans-serif;
 	text-transform: uppercase;
+}
+
+button:not(.close):not(.helper):hover > img {
+	cursor: pointer;
+	filter: brightness(0.7);
 }
 
 footer {

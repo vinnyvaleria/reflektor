@@ -23,10 +23,8 @@ div.modal {
 }
 
 .close {
-	border: 0;
-	padding: 0;
 	background-color: transparent;
-    display: flex; /* removing unnecessary bottom space */
+	display: flex; /* removing unnecessary bottom space */
 }
 
 .close:hover {
