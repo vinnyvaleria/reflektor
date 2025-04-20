@@ -5,7 +5,15 @@ div.modal {
     margin: 2rem;
 }
 
-.modal-header,
+.modal-header{
+    padding: 10px;
+}
+
+.close {
+    border: 0;
+    background-color: transparent;
+}
+
 .modal-body {
     padding: 1rem;
 }

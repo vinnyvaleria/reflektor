@@ -31,6 +31,7 @@ body {
     justify-content: center;
     align-items: center;
     font-family: "Jersey 10", sans-serif;
+    background-color: var(--light);
 }
 
 h1 {
@@ -43,6 +44,9 @@ h1 {
 p {
     margin: 0;
     font-size: 1rem;
+}
+
+.counters, button {
     text-transform: uppercase;
 }
 
