@@ -1,135 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="./assets/images/icon.png" />
-        <link rel="stylesheet" href="./css/main-style.css" />
-        <link rel="stylesheet" href="./css/modal-style.css" />
-        <title>Reflektor (Modals)</title>
-    </head>
-    <body style="width: auto; height: auto">
-        <!-- Modal 0 : General Use -->
-        <div class="modal hide" id="generalModal" role="dialog">
-            <!-- role is added for accessibility especially for screen readers -->
-            <div class="modal-header">
-                <p class="modal-title"></p>
-                <button class="close" data-dismiss="modal">x</button>
-            </div>
-            <div class="modal-body">
-                <p class="general-message"></p>
-            </div>
-        </div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" href="./assets/images/icon.png" />
+		<link rel="stylesheet" href="./css/main-style.css" />
+		<link rel="stylesheet" href="./css/modal-style.css" />
+		<title>Reflektor (Modals)</title>
+	</head>
+	<body style="width: auto; height: auto">
+		<!-- Modal 0 : General Use -->
+		<div class="modal hide" id="generalModal" role="dialog">
+			<!-- role is added for accessibility especially for screen readers -->
+			<div class="modal-header">
+				<p class="modal-title"></p>
+				<button class="close" data-dismiss="modal">x</button>
+			</div>
+			<div class="modal-body">
+				<p class="general-message"></p>
+			</div>
+		</div>
 
-        <!-- Modal 1 : Pause -->
-        <div class="modal hide" id="pauseModal" role="dialog">
-            <div class="modal-header">
-                <p class="modal-title"></p>
-                <button class="close" data-dismiss="modal">x</button>
-            </div>
-            <div class="modal-body">
-                <div class="modal-pause">
-                    <button class="continue">Continue</button>
-                    <button class="reset">Reset</button>
-                    <button class="home">Home</button>
-                    <button class="leaderboard">Leaderboard</button>
-                </div>
-            </div>
-        </div>
+		<!-- Modal 1 : Pause -->
+		<div class="modal hide" id="pauseModal" role="dialog">
+			<div class="modal-header">
+				<p class="modal-title"></p>
+				<button class="close" data-dismiss="modal">x</button>
+			</div>
+			<div class="modal-body">
+				<div class="modal-pause">
+					<button class="continue">Continue</button>
+					<button class="reset">Reset</button>
+					<button class="home">Home</button>
+					<button class="leaderboard">Leaderboard</button>
+				</div>
+			</div>
+		</div>
 
-        <!-- Modal 2 : Leaderboard -->
-        <div class="modal hide" id="leaderboardModal" role="dialog">
-            <div class="modal-header">
-                <p class="modal-title"></p>
-                <button class="close" data-dismiss="modal">x</button>
-            </div>
-            <div class="modal-body">
-                <div class="modal-leaderboard">
-                    <!-- Leaderboard tab links -->
-                    <div class="leaderboard-tabs">
-                        <button class="round-tab-link">Round</button>
-                        <button class="timer-tab-link">Timer</button>
-                        <button class="steps-tab-link">Steps</button>
-                    </div>
-                    <!-- Leaderboard tab content -->
-                    <div id="Round" class="tab-content"></div>
-                    <div id="Time" class="tab-content"></div>
-                    <div id="Steps" class="tab-content"></div>
-                </div>
-            </div>
-        </div>
+		<!-- Modal 2 : Leaderboard -->
+		<div class="modal hide" id="leaderboardModal" role="dialog">
+			<div class="modal-header">
+				<p class="modal-title"></p>
+				<button class="close" data-dismiss="modal">x</button>
+			</div>
+			<div class="modal-body">
+				<div class="modal-leaderboard">
+					<!-- Leaderboard tab links -->
+					<div class="leaderboard-tabs">
+						<button class="round-tab-link">Round</button>
+						<button class="timer-tab-link">Timer</button>
+						<button class="steps-tab-link">Steps</button>
+					</div>
+					<!-- Leaderboard tab content -->
+					<div id="Round" class="tab-content"></div>
+					<div id="Time" class="tab-content"></div>
+					<div id="Steps" class="tab-content"></div>
+				</div>
+			</div>
+		</div>
 
-        <!-- Modal 3 : How To Play (rules) -->
-        <div class="modal hide" id="rulesModal" role="dialog">
-            <div class="modal-header">
-                <p class="modal-title"></p>
-                <button class="close" data-dismiss="modal">x</button>
-            </div>
-            <div class="modal-body">
-                <div class="modal-rules">
-                    <p>
-                        The game consists of 2 grids : <br />
-                        Main (left) and Secondary (right)
-                    </p>
-                    <p>
-                        Your goal is to move both characters on the Main grid
-                        and Secondary grid each to destination X.
-                    </p>
-                    <ol>
-                        <li>
-                            You will only be able to control the character in
-                            Main grid.
-                        </li>
-                        <li>
-                            Your other character in the Secondary grid will move
-                            in a mirrored direction.
-                        </li>
-                        <li>
-                            Use the arrow buttons on the screen or on your
-                            keyboard to move the characters.
-                        </li>
-                        <li>
-                            If you hit any of the obstacles (brick wall, grass
-                            or big tree), it will be GAME OVER!
-                        </li>
-                        <li>Have fun and be on the leaderboard!</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
+		<!-- Modal 3 : How To Play (rules) -->
+		<div class="modal hide" id="rulesModal" role="dialog">
+			<div class="modal-header">
+				<p class="modal-title"></p>
+				<button class="close" data-dismiss="modal">x</button>
+			</div>
+			<div class="modal-body">
+				<div class="modal-rules">
+					<p>
+						The game consists of 2 grids : <br />
+						Main (left) and Secondary (right)
+					</p>
+					<p>
+						Your goal is to move both characters on the Main grid and Secondary
+						grid each to destination X.
+					</p>
+					<ol>
+						<li>
+							You will only be able to control the character in Main grid.
+						</li>
+						<li>
+							Your other character in the Secondary grid will move in a mirrored
+							direction.
+						</li>
+						<li>
+							Use the arrow buttons on the screen or on your keyboard to move
+							the characters.
+						</li>
+						<li>
+							If you hit any of the obstacles (brick wall, grass or big tree),
+							it will be GAME OVER!
+						</li>
+						<li>Have fun and be on the leaderboard!</li>
+					</ol>
+				</div>
+			</div>
+		</div>
 
-        <!-- Modal 4 : Game Over -->
-        <div class="modal hide" id="gameOverModal" role="dialog">
-            <div class="modal-header">
-                <p class="modal-title"></p>
-                <button class="close" data-dismiss="modal">x</button>
-            </div>
-            <div class="modal-body">
-                <div class="modal-game-over">
-                    <p>Continue?</p>
-                    <div class="game-over-ans">
-                        <button class="continue">Yes</button>
-                        <button class="reset">No</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+		<!-- Modal 4 : Game Over -->
+		<div class="modal hide" id="gameOverModal" role="dialog">
+			<div class="modal-header">
+				<p class="modal-title"></p>
+				<button class="close" data-dismiss="modal">x</button>
+			</div>
+			<div class="modal-body">
+				<div class="modal-game-over">
+					<p>Continue?</p>
+					<div class="game-over-ans">
+						<button class="continue">Yes</button>
+						<button class="reset">No</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
-        <!-- Modal 5 : Game Won -->
-        <div class="modal hide" id="gameWonModal" role="dialog">
-            <div class="modal-header">
-                <p class="modal-title"></p>
-                <button class="close" data-dismiss="modal">x</button>
-            </div>
-            <div class="modal-body">
-                <div class="modal-game-over">
-                    <p>New Game?</p>
-                    <div class="game-over-ans">
-                        <button class="reset">Yes</button>
-                        <button class="home">No</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
+		<!-- Modal 5 : Game Won -->
+		<div class="modal hide" id="gameWonModal" role="dialog">
+			<div class="modal-header">
+				<p class="modal-title"></p>
+				<button class="close" data-dismiss="modal">x</button>
+			</div>
+			<div class="modal-body">
+				<div class="modal-game-over">
+					<p>New Game?</p>
+					<div class="game-over-ans">
+						<button class="reset">Yes</button>
+						<button class="home">No</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
