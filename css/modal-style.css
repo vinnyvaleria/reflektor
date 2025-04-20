@@ -19,17 +19,19 @@ div.modal {
 }
 
 .modal-header {
-	padding: 0.5rem 1rem;
+	padding: 0.7rem 1rem;
 }
 
 .close {
 	border: 0;
 	padding: 0;
 	background-color: transparent;
+    display: flex; /* removing unnecessary bottom space */
 }
 
 .close:hover {
 	cursor: pointer;
+	color: var(--primary);
 }
 
 .modal-body {

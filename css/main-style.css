@@ -49,6 +49,8 @@ p {
 button:not(.close) {
 	text-transform: uppercase;
 	padding: 0.5rem 1rem;
+	font-family: "Jersey 10", sans-serif;
+	text-transform: uppercase;
 }
 
 footer {
