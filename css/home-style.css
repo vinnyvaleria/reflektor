@@ -2,3 +2,14 @@ a {
 	text-decoration: none;
 	color: unset;
 }
+
+.home-buttons {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.home-buttons > button {
+	min-width: 150px;
+}
