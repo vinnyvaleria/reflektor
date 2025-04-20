@@ -76,7 +76,6 @@ let showModal = false;
 const startButton = document.querySelector(".start-button");
 const pauseButton = document.querySelector(".pause");
 const continueButton = document.querySelectorAll(".continue");
-const resetButton = document.querySelectorAll(".reset");
 const helperButtons = document.querySelectorAll(".helper");
 const arrowButtons = document.querySelectorAll(".arrow");
 
@@ -445,20 +444,50 @@ const continueGame = () => {
     // continue the game
 };
 
-// reset the game
-const resetGame = () => {};
-
 // render the game
 const render = () => {
     updateGrid(selectedMap, mainGrid, "main");
     updateGrid(mirroredMap, secGrid, "sec");
 };
 
+// reset the game
+const resetGame = () => {
+    // clear the grids
+    mainGrid.innerHTML = "";
+    secGrid.innerHTML = "";
+
+    // reset all variables
+    currentHelper = "";
+    roundCounter = 0;
+    hasWon = false;
+    helperAvailability = [1, 1, 1];
+
+    // resets player tracking variables
+    playerID = undefined;
+    mirroredID = undefined;
+    playerRow = undefined;
+    playerCol = undefined;
+
+    // close existing modal if any
+    toggleModal("close");
+
+    // re-renders everything in the screen in regards to the game
+    selectedMap = randomiseMap();
+    mirroredMap = mirrorSelectedMap();
+    locatePlayerInit();
+    mirroredCol = mirroredMap[playerRow].indexOf(2);
+
+    // regenerate grid with current difficulty
+    generateGrid(currentDifficulty);
+    render();
+    randomiseObstacles();
+    console.log("Game reset done!");
+};
+
 // initialise game
 const init = () => {
-    console.log("Game initialised!");
+    // console.log("Game initialised!");
     currentDifficulty = LEVEL_EASY;
-    generateGrid(currentDifficulty);
     selectedMap = randomiseMap();
     // console.log(`selectedMap : ${selectedMap}`); --> validated correct map based on randomIndex pointed!
     mirroredMap = mirrorSelectedMap();
@@ -466,6 +495,8 @@ const init = () => {
     locatePlayerInit();
     // assign mirroreCol variable
     mirroredCol = mirroredMap[playerRow].indexOf(2);
+    // generate grid accordingly
+    generateGrid(currentDifficulty);
     render();
     randomiseObstacles();
 };
@@ -489,10 +520,11 @@ document.addEventListener("keydown", (e) => {
     // console.log(arrow);  --> to check on the value
     if (arrow) {
         movePlayer(arrow);
-
         const button = document.querySelector(`.${arrow}`);
         button?.classList.add("hover");
     }
+    // to check if the function is being triggered multiple times
+    // console.log("KEYDOWN TRIGGERED", e.key); --> verified only triggered once per keydown
 });
 
 document.addEventListener("keyup", (e) => {
@@ -546,5 +578,12 @@ sqrElements.forEach((sqr) => {
 document.body.addEventListener("click", (e) => {
     if (e.target.matches(".close")) {
         toggleModal("close");
+    }
+});
+
+// reset game if the button is clicked
+document.body.addEventListener("click", (e) => {
+    if (e.target.matches(".reset")) {
+        resetGame();
     }
 });
