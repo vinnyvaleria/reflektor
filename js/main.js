@@ -79,7 +79,6 @@ const secGrid = document.querySelector(".secondary-grid");
 
 // modal buttons
 const modalElements = document.querySelectorAll(".modal");
-const closeButton = document.querySelector(".close");
 const homeButton = document.querySelectorAll(".home");
 const leaderboardButton = document.querySelector(".leaderboard");
 const rulesButton = document.querySelector(".rules");
@@ -99,13 +98,20 @@ const generateGrid = (gridSize) => {
 	sqrElements = document.querySelectorAll(".sqr");
 };
 
-// function to toggleModal
+// function to toggle modal
 // set as async to wait for trigger
 const toggleModal = async (button) => {
 	// check for existing modal open
 	if (showModal === true) {
 		modalContainer.innerHTML = "";
 		showModal = false;
+	}
+
+	// check if the button passed in is close
+	if (button === "close") {
+		modalContainer.classList.add("hide");
+		showModal = false;
+		return; // throw out of bounds
 	}
 
 	try {
@@ -511,4 +517,12 @@ sqrElements.forEach((sqr) => {
 		// console.log(removeID);   --> validated correct id assigned!
 		removeObstacle();
 	});
+});
+
+// event delegation to close popup modals
+// cannot use normal event listener as close button is added dynamically when modal is showing
+document.body.addEventListener("click", (e) => {
+	if (e.target.matches(".close")) {
+		toggleModal("close");
+	}
 });

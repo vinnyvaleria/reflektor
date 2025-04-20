@@ -2,8 +2,8 @@ div#modal-container {
 	width: var(--FW);
 	height: var(--FH);
 	position: absolute;
-    align-content: center;
-    justify-items: center;
+	align-content: center;
+	justify-items: center;
 	background-color: rgba(0, 0, 0, 0.8);
 }
 
@@ -15,16 +15,21 @@ div.modal {
 	box-shadow: 20px 20px var(--primary);
 	margin: 2rem;
 	z-index: 2; /* bring modal forward */
-    text-align: justify;
+	text-align: justify;
 }
 
 .modal-header {
-	padding: .5rem 1rem;
+	padding: 0.5rem 1rem;
 }
 
 .close {
 	border: 0;
+	padding: 0;
 	background-color: transparent;
+}
+
+.close:hover {
+	cursor: pointer;
 }
 
 .modal-body {

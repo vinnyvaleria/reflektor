@@ -52,6 +52,6 @@ button:not(.close) {
 }
 
 footer {
-    position: absolute;
-    bottom: 1rem;
+	position: absolute;
+	bottom: 1rem;
 }
