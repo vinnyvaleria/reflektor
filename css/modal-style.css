@@ -8,6 +8,7 @@ div#modal-container {
 }
 
 div.modal {
+    min-width: 30%;
 	max-width: 50%;
 	height: fit-content;
 	background-color: var(--white);

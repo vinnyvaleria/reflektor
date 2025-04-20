@@ -290,7 +290,7 @@ const checkGoalReached = (row, col) => {
         mainGrid.querySelector(".goal").classList.add("won");
         secGrid.querySelector(".goal").classList.add("won");
 
-        console.log("You have reached the goal!");
+        // console.log("You have reached the goal!");
         hasWon = true;
         return true;
     }
@@ -339,9 +339,11 @@ const movePlayer = (direction) => {
 
     // check if goal is reached
     if (checkGoalReached(newRow, newCol)) {
+        // update the last position of character before winning to blank
         mainGrid.querySelector(`#main-${playerID}`).textContent = "";
         secGrid.querySelector(`#sec-${mirroredID}`).textContent = "";
-        console.log("Game Won!");
+        // console.log("Game Won!");
+        toggleModal("gameWon");
         return;
     }
 
@@ -484,7 +486,7 @@ arrowButtons.forEach((arrowButton) => {
 // updated function to be more dynamic as the functions passed to switch-case is the same
 document.addEventListener("keydown", (e) => {
     const arrow = keyToArrow[e.key];
-    console.log(arrow);
+    // console.log(arrow);  --> to check on the value
     if (arrow) {
         movePlayer(arrow);
 
