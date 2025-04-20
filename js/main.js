@@ -61,6 +61,8 @@ let sqrElements;
 // set variables on how many time can the helper be used
 // based on HELPER = ["hammer", "axe", "sickle"];
 let helperAvailability = [1, 1, 1];
+// create a new variable for the state if any modal is open
+let showModal = false;
 
 /*------------------------ Cached Element References ------------------------*/
 // play buttons
@@ -76,26 +78,43 @@ const mainGrid = document.querySelector(".main-grid");
 const secGrid = document.querySelector(".secondary-grid");
 
 // modal buttons
+const modalElements = document.querySelectorAll(".modal");
 const closeButton = document.querySelector(".close");
 const homeButton = document.querySelectorAll(".home");
 const leaderboardButton = document.querySelector(".leaderboard");
 const rulesButton = document.querySelector(".rules");
+// this is an empty container in game.html
+const modalContainer = document.getElementById("modal-container");
 
 /*-------------------------------- Functions --------------------------------*/
 // function to generate grid based on difficulty variable set
 const generateGrid = (gridSize) => {
-    for (i = 0; i < gridSize * gridSize; i++) {
-        // using innerHTML to simplify populating within the respective main and secondary grid div
-        // using Tic Tac Toe homework as reference for grid structures
-        // assigning id similar to the homework, in order to utilise event.target.id later on
-        mainGrid.innerHTML += `<div class="sqr" id="main-${i}"></div>`;
-        secGrid.innerHTML += `<div class="sqr" id="sec-${i}"></div>`;
-    }
-    sqrElements = document.querySelectorAll(".sqr");
+	for (i = 0; i < gridSize * gridSize; i++) {
+		// using innerHTML to simplify populating within the respective main and secondary grid div
+		// using Tic Tac Toe homework as reference for grid structures
+		// assigning id similar to the homework, in order to utilise event.target.id later on
+		mainGrid.innerHTML += `<div class="sqr" id="main-${i}"></div>`;
+		secGrid.innerHTML += `<div class="sqr" id="sec-${i}"></div>`;
+	}
+	sqrElements = document.querySelectorAll(".sqr");
 };
 
-// open modal when button is clicked
-const openModal = (button) => {};
+// function to toggleModal
+// set as async to wait for trigger
+const toggleModal = async (button) => {
+	// check for existing modal open
+	if (showModal === true) {
+        modalContainer.innerHTML = '';
+        showModal = false;
+    }
+    
+    try {
+        // fetch HTML files containing the existing modals (modals.html)
+        const response = await fetch("modals.html");
+    } catch (error) {
+        
+    }
+};
 
 // randomise map used for the user to play
 const randomiseMap = () => {

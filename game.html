@@ -1,80 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="./assets/images/icon.png" />
-        <link rel="stylesheet" href="./css/style.css" />
-        <script defer src="./js/main.js"></script>
-        <title>Reflektor (Game)</title>
-        <!-- import script to run the init script -->
-    </head>
-    <body>
-        <h1>Reflektor</h1>
-        <div class="information-icons">
-            <button class="pause">Pause</button>
-            <button class="leaderboard">Leaderboard</button>
-            <button class="rules">How to Play</button>
-        </div>
-        <div class="counters">
-            <p class="rounds-title">
-                Round : <span class="rounds-counter"></span>
-            </p>
-            <!-- <p class="timer-title">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" href="./assets/images/icon.png" />
+		<link rel="stylesheet" href="./css/main-style.css" />
+		<link rel="stylesheet" href="./css/game-style.css" />
+		<script defer src="./js/main.js"></script>
+		<title>Reflektor (Game)</title>
+		<!-- import script to run the init script -->
+	</head>
+	<body>
+		<h1>Reflektor</h1>
+		<div class="information-icons">
+			<button class="pause">Pause</button>
+			<button class="leaderboard">Leaderboard</button>
+			<button class="rules">How to Play</button>
+		</div>
+		<div class="counters">
+			<p class="rounds-title">Round : <span class="rounds-counter"></span></p>
+			<!-- <p class="timer-title">
                 Timer : <span class="timer-counter"></span>
             </p>
             <p class="steps-title">
                 Steps : <span class="steps-counter"></span>
             </p> -->
-        </div>
-        <div class="game-grids-container">
-            <div class="left-grid-container">
-                <div class="main-grid"></div>
-                <div class="arrows">
-                    <!-- trying to use data-* attributes -->
-                    <!-- keeping the class as it is in case needed for styling (shorter with class than data-* attributes) -->
-                    <button class="arrow up" data-direction="up">Up</button
-                    ><br />
-                    <button class="arrow left" data-direction="left">
-                        Left
-                    </button>
-                    <button class="arrow down" data-direction="down">
-                        Down
-                    </button>
-                    <button class="arrow right" data-direction="right">
-                        Right
-                    </button>
-                </div>
-            </div>
-            <div class="helpers">
-                <button class="helper hammer" data-helper="hammer">
-                    <img
-                        src="./assets/images/helpers/hammer.png"
-                        width="70px"
-                        height="70px"
-                        alt="helper : hammer"
-                    />
-                </button>
-                <button class="helper axe" data-helper="axe">
-                    <img
-                        src="./assets/images/helpers/axe.png"
-                        width="70px"
-                        height="70px"
-                        alt="helper : axe"
-                    />
-                </button>
-                <button class="helper sickle" data-helper="sickle">
-                    <img
-                        src="./assets/images/helpers/sickle.png"
-                        width="70px"
-                        height="70px"
-                        alt="helper : sickle"
-                    />
-                </button>
-            </div>
-            <div class="right-grid-container">
-                <div class="secondary-grid"></div>
-            </div>
-        </div>
-    </body>
+		</div>
+		<div class="game-grids-container">
+			<div class="left-grid-container">
+				<div class="main-grid"></div>
+				<div class="arrows">
+					<!-- trying to use data-* attributes -->
+					<!-- keeping the class as it is in case needed for styling (shorter with class than data-* attributes) -->
+					<button class="arrow up" data-direction="up">Up</button><br />
+					<button class="arrow left" data-direction="left">Left</button>
+					<button class="arrow down" data-direction="down">Down</button>
+					<button class="arrow right" data-direction="right">Right</button>
+				</div>
+			</div>
+			<div class="helpers">
+				<button class="helper hammer" data-helper="hammer">
+					<img
+						src="./assets/images/helpers/hammer.png"
+						width="70px"
+						height="70px"
+						alt="helper : hammer" />
+				</button>
+				<button class="helper axe" data-helper="axe">
+					<img
+						src="./assets/images/helpers/axe.png"
+						width="70px"
+						height="70px"
+						alt="helper : axe" />
+				</button>
+				<button class="helper sickle" data-helper="sickle">
+					<img
+						src="./assets/images/helpers/sickle.png"
+						width="70px"
+						height="70px"
+						alt="helper : sickle" />
+				</button>
+			</div>
+			<div class="right-grid-container">
+				<div class="secondary-grid"></div>
+			</div>
+		</div>
+		<div id="modal-container"></div>
+		<footer class="copyright-text">Copyright text</footer>
+	</body>
 </html>
