@@ -110,6 +110,8 @@ const toggleModal = async (button) => {
 
 	try {
 		// fetch HTML files containing the existing modals (modals.html)
+		// this will only work with live server in VSC
+		// otherwise it will return CORS within console
 		const response = await fetch("modals.html");
 		const htmlText = await response.text();
 
@@ -128,6 +130,7 @@ const toggleModal = async (button) => {
 
 		// append the modal retrieved to the game page
 		modalContainer.appendChild(modalToShow);
+		modalContainer.classList.remove("hide");
 		modalToShow.classList.remove("hide");
 		showModal = true;
 	} catch (error) {}
