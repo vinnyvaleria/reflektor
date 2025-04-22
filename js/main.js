@@ -575,9 +575,13 @@ sqrElements.forEach((sqr) => {
 
 // event delegation to close popup modals
 // cannot use normal event listener as close button is added dynamically when modal is showing
-document.body.addEventListener("click", (e) => {
+modalContainer.addEventListener("click", (e) => {
     if (e.target.matches(".close")) {
         toggleModal("close");
+
+        // we can stop propagation
+        // so as to make sure it does not bubble up
+        e.stopPropagation();
     }
 });
 

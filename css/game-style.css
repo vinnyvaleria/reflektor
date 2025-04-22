@@ -1,3 +1,15 @@
+.information-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.information {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    background-color: var(--primary);
+    color: var(--light);
+}
+
 .counters {
     text-transform: uppercase;
 }
@@ -85,7 +97,8 @@ body > div,
     align-content: center;
 }
 
-.arrow.hover > img {
+.arrow.hover > img,
+.information:hover {
     cursor: pointer;
     filter: brightness(0.7);
 }
