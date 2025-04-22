@@ -22,6 +22,12 @@ MVP
 - SQ : Arrow buttons under main grid 
 - SQ : The obstacles need to be collected in the grid itself
 - SQ : Make sure to comment out the console log at the end
+- WH : The obstacle will work when the player works towards the obstacle
+- WH : fetch the modals once will be okay
+- WH : add a different game sound (use open source sounds)
+- John : since its Top view, trees, grass etc can be top view, so they look like pokemon red/blue tree and grasses
+- John : The movement by the person/NPC can be smoother with transition instead of blinking/jumping
+- John The number of files can be reduced, 4 CSS files, 4 HTML files is kinda interesting, bro is farming files instead of games 
 
 Enhancements
 - Can be a 2-player game in the future, but turn-based.
