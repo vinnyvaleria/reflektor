@@ -70,6 +70,8 @@ let sqrElements;
 let helperAvailability = [1, 1, 1];
 // create a new variable for the state if any modal is open
 let showModal = false;
+// to pass in the current message
+let currentMessage;
 
 /*------------------------ Cached Element References ------------------------*/
 // play buttons
@@ -134,6 +136,10 @@ const toggleModal = async (button) => {
         // find the modal based on the button class passed in
         const modalToShow = tempDiv.querySelector(`#${button}Modal`);
 
+        if (button === "gameOver") {
+            modalToShow.querySelector(".modal-title").textContent =
+                currentMessage;
+        }
         // throw out of bound if modal is not found
         if (!modalToShow) {
             console.error(`${button}Modal not found`);
@@ -268,13 +274,15 @@ const checkForObstacles = (row, col, mCol) => {
         col >= selectedMap[row].length ||
         mCol >= mirroredMap[row].length
     ) {
-        console.log("No movement out of the grid allowed!");
+        currentMessage = "No movement out of the grid allowed!";
+        toggleModal("gameOver");
         return true; // out of bounds
     }
 
     // if obstacle is hit  in either main or secondary grid
     if (selectedMap[row][col] === 1 || mirroredMap[row][mCol] === 1) {
-        console.log("You have hit an obstacle!");
+        currentMessage = "You have hit an obstacle!";
+        toggleModal("gameOver");
         return true;
     }
 };
