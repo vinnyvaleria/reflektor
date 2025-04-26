@@ -46,7 +46,7 @@ const keyToArrow = {
 // in the future, more will be added
 let currentDifficulty;
 let currentHelper;
-let roundCounter;
+let roundCounter = 0;
 // const for selected map
 let selectedMap = [];
 let playerID;
@@ -80,6 +80,7 @@ const pauseButton = document.querySelector(".pause");
 const continueButton = document.querySelectorAll(".continue");
 const helperButtons = document.querySelectorAll(".helper");
 const arrowButtons = document.querySelectorAll(".arrow");
+const roundElement = document.querySelector(".rounds-counter");
 
 // declare cached element references for the 2 grids : main and secondary
 const mainGrid = document.querySelector(".main-grid");
@@ -449,13 +450,19 @@ const pauseGame = () => {
 // continue the game
 const continueGame = () => {
     // close the pause modal
+    // checker of showModal is available in the toggleModal function
+    toggleModal("close");
+
     // continue the game
+    roundCounter++;
+    roundElement.textContent = roundCounter;
 };
 
 // render the game
 const render = () => {
     updateGrid(selectedMap, mainGrid, "main");
     updateGrid(mirroredMap, secGrid, "sec");
+    roundElement.textContent = roundCounter;
 };
 
 // reset the game
@@ -590,12 +597,11 @@ modalContainer.addEventListener("click", (e) => {
         // we can stop propagation
         // so as to make sure it does not bubble up
         e.stopPropagation();
-    }
-});
-
-// reset game if the button is clicked
-document.body.addEventListener("click", (e) => {
-    if (e.target.matches(".reset")) {
+    } else if (e.target.matches(".continue")) {
+        continueGame();
+        e.stopPropagation();
+    } else if (e.target.matches(".reset")) {
         resetGame();
+        e.stopPropagation();
     }
 });
