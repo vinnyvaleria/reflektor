@@ -1,28 +1,28 @@
 [ Rough ideas ]
 
 MVP
-- Grid mirror maze. Pixel style.
-- Two characters will move, but user controls the main.
-- Secondary character will mirror the movement of main. 
-- To win, must reach the goal X. One level for now.
+- (done) Grid mirror maze. Pixel style.
+- (done) Two characters will move, but user controls the main.
+- (done) Secondary character will mirror the movement of main. 
+- (done) To win, must reach the goal X. One level for now.
 - Obstacles spawn differently in main grid and secondary grid.
 - Obstacles to be limited by numbers per grid. Will need a minimum and maximum amount.
-- User help : can only be appied to either main or secondary grid.
+- (done) User help : can only be appied to either main or secondary grid.
     > Hammer (to destroy the wall) x 1
     > Axe (to destroy tree) x 1
 - If user wins the game, they can input their name in the ranking board.
 - Ranking board to record the time and steps taken.
-- Game over if the player hits the obstacles in main or secondary grid.
-- Movement can be done with arrow keys on keyboard or on screen.
-- WH : Maybe instead of recording steps, use round until user wins
-- WH : Create 3 different grids for now (static)
+- (done) Game over if the player hits the obstacles in main or secondary grid.
+- (done) Movement can be done with arrow keys on keyboard or on screen.
+- (done) WH : Maybe instead of recording steps, use round until user wins
+- (done) WH : Create 3 different grids for now (static)
 - WH : Utilise handicap with keybind instead of mouse only
 - SQ : We can only stick with local leaderboard for now (since globally is not taught yet)
-- Jay : Make main grid pops than the other
-- SQ : Arrow buttons under main grid 
+- (done) Jay : Make main grid pops than the other
+- (done) SQ : Arrow buttons under main grid 
 - SQ : The obstacles need to be collected in the grid itself
-- SQ : Make sure to comment out the console log at the end
-- WH : The obstacle will work when the player works towards the obstacle
+- (done) SQ : Make sure to comment out the console log at the end
+- WH : The obstacle will work when the player walks towards the obstacle
 - WH : fetch the modals once will be okay
 - WH : add a different game sound (use open source sounds)
 - John : since its Top view, trees, grass etc can be top view, so they look like pokemon red/blue tree and grasses
