@@ -72,6 +72,7 @@ let helperAvailability = [1, 1, 1];
 let showModal = false;
 // to pass in the current message
 let currentMessage;
+// let click = 0;
 
 /*------------------------ Cached Element References ------------------------*/
 // play buttons
@@ -81,13 +82,13 @@ const continueButton = document.querySelectorAll(".continue");
 const helperButtons = document.querySelectorAll(".helper");
 const arrowButtons = document.querySelectorAll(".arrow");
 const roundElement = document.querySelector(".rounds-counter");
+const informationButtons = document.querySelectorAll(".information");
 
 // declare cached element references for the 2 grids : main and secondary
 const mainGrid = document.querySelector(".main-grid");
 const secGrid = document.querySelector(".secondary-grid");
 
 // modal buttons
-const modalElements = document.querySelectorAll(".modal");
 const homeButton = document.querySelectorAll(".home");
 const leaderboardButton = document.querySelector(".leaderboard");
 const rulesButton = document.querySelector(".rules");
@@ -588,12 +589,22 @@ sqrElements.forEach((sqr) => {
     });
 });
 
-// event delegation to close popup modals
-// cannot use normal event listener as close button is added dynamically when modal is showing
+// add event listener for the existing information buttons
+informationButtons.forEach((informationButton) => {
+    informationButton.addEventListener("click", (e) => {
+        // see what are the class name at index 1, and check the typeof return
+        // console.log(typeof e.target.classList.item(1));
+        toggleModal(e.target.classList.item(1));
+        e.stopPropagation();
+    });
+});
+
+// event delegation within modals
+// cannot use normal event listener as some buttons are added dynamically when modal is showing
 modalContainer.addEventListener("click", (e) => {
     if (e.target.matches(".close")) {
+        // console.log(`click close : ${click++}`);
         toggleModal("close");
-
         // we can stop propagation
         // so as to make sure it does not bubble up
         e.stopPropagation();
