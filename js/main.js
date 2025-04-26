@@ -78,8 +78,6 @@ let currentModal = "";
 /*------------------------ Cached Element References ------------------------*/
 // play buttons
 const startButton = document.querySelector(".start-button");
-const pauseButton = document.querySelector(".pause");
-const continueButton = document.querySelectorAll(".continue");
 const helperButtons = document.querySelectorAll(".helper");
 const arrowButtons = document.querySelectorAll(".arrow");
 const roundElement = document.querySelector(".rounds-counter");
@@ -89,10 +87,6 @@ const informationButtons = document.querySelectorAll(".information");
 const mainGrid = document.querySelector(".main-grid");
 const secGrid = document.querySelector(".secondary-grid");
 
-// modal buttons
-const homeButton = document.querySelectorAll(".home");
-const leaderboardButton = document.querySelector(".leaderboard");
-const rulesButton = document.querySelector(".rules");
 // this is an empty container in game.html
 const modalContainer = document.getElementById("modal-container");
 
