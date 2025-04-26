@@ -73,6 +73,7 @@ let showModal = false;
 // to pass in the current message
 let currentMessage;
 // let click = 0;
+let currentModal = "";
 
 /*------------------------ Cached Element References ------------------------*/
 // play buttons
@@ -111,32 +112,38 @@ const generateGrid = (gridSize) => {
 // function to toggle modal
 // set as async to wait for trigger
 const toggleModal = async (button) => {
-    // check for existing modal open
-    if (showModal === true) {
-        modalContainer.innerHTML = "";
-        showModal = false;
-    }
-
-    // check if the button passed in is close
-    if (button === "close") {
-        modalContainer.classList.add("hide");
-        showModal = false;
-        return; // throw out of bounds
-    }
-
     try {
-        // fetch HTML files containing the existing modals (modals.html)
-        // this will only work with live server in VSC
-        // otherwise it will return CORS within console
-        const response = await fetch("modals.html");
-        const htmlText = await response.text();
+        if (modalContainer.innerHTML === "") {
+            // fetch HTML files containing the existing modals (modals.html)
+            // this will only work with live server in VSC
+            // otherwise it will return CORS within console
+            const response = await fetch("modals.html");
+            const htmlText = await response.text();
 
-        // use a tempDiv so as not to temper with the original HTML file
-        const tempDiv = document.createElement("div");
-        tempDiv.innerHTML = htmlText;
+            // use a tempDiv so as not to temper with the original HTML file
+            // const tempDiv = document.createElement("div");
+            // tempDiv.innerHTML = htmlText;
+
+            // append to modal container in game.html
+            modalContainer.innerHTML = htmlText;
+        }
+
+        // check for existing modal
+        if (showModal === true) {
+            modalContainer
+                .querySelector(`#${currentModal}Modal`)
+                .classList.add("hide");
+        }
+
+        // check if the button passed in is close
+        if (button === "close") {
+            modalContainer.classList.add("hide");
+            showModal = false;
+            return; // throw out of bounds
+        }
 
         // find the modal based on the button class passed in
-        const modalToShow = tempDiv.querySelector(`#${button}Modal`);
+        const modalToShow = modalContainer.querySelector(`#${button}Modal`);
 
         if (button === "gameOver") {
             modalToShow.querySelector(".modal-title").textContent =
@@ -148,10 +155,9 @@ const toggleModal = async (button) => {
             return;
         }
 
-        // append the modal retrieved to the game page
-        modalContainer.appendChild(modalToShow);
         modalContainer.classList.remove("hide");
         modalToShow.classList.remove("hide");
+        currentModal = button;
         showModal = true;
     } catch (error) {}
 };
