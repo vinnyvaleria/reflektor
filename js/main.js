@@ -77,7 +77,7 @@ let currentModal = "";
 
 /*------------------------ Cached Element References ------------------------*/
 // play buttons
-const startButton = document.querySelector(".start-button");
+const startButton = document.querySelector(".start");
 const helperButtons = document.querySelectorAll(".helper");
 const arrowButtons = document.querySelectorAll(".arrow");
 const roundElement = document.querySelector(".rounds-counter");
@@ -519,8 +519,8 @@ const init = () => {
 
 /*----------------------------- Event Listeners -----------------------------*/
 // initialise the game when start button is clicked
-// startButton.addEventListener("onclick", init);
 init();
+
 // movement controls : arrow buttons on screen or use keyboard arrows
 arrowButtons.forEach((arrowButton) => {
     arrowButton.addEventListener("click", () => {

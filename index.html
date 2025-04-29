@@ -12,10 +12,16 @@
         <div class="homepage">
             <h1>Reflektor</h1>
             <div class="home-buttons">
-                <button class="start text">Start Game
+                <button class="start text" onclick="startGame()">Start Game
                 <button class="leaderboard text">Leaderboard</button>
             </div>
         </div>
         <footer class="copyright-text">Copyright text</footer>
+        <script>
+            // start the game when button is clicked
+            function startGame() {
+                window.location.href = "game.html"
+            }
+        </script>
     </body>
 </html>
