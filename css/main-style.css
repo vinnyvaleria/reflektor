@@ -31,6 +31,8 @@ body {
     justify-content: center;
     align-items: center;
     font-family: "Jersey 10", sans-serif;
+    background-image: url("../assets/images/light-bg.jpg");
+    background-size: cover;
     background-color: var(--light);
 }
 
@@ -53,7 +55,6 @@ button {
     text-transform: uppercase;
 }
 
-button:not(.close):not(.helper):hover > img,
 button:hover.text {
     cursor: pointer;
     filter: brightness(0.7);

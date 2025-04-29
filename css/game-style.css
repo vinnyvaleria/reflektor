@@ -1,13 +1,23 @@
 .information-icons {
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
 }
 
-.information {
+.information,
+.arrow {
+    background-color: transparent;
+}
+
+/* .information {
     padding: 0.5rem 1rem;
     border-radius: 5px;
     background-color: var(--primary);
     color: var(--light);
+} */
+
+.information:hover > img {
+    cursor: pointer;
+    filter: drop-shadow(2px 4px var(--black));
 }
 
 .counters {
@@ -47,6 +57,7 @@ body > div,
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--light);
 }
 
 .obstacle {
@@ -97,8 +108,7 @@ body > div,
     align-content: center;
 }
 
-.arrow.hover > img,
-.information:hover {
+.arrow:hover > img {
     cursor: pointer;
     filter: brightness(0.7);
 }

@@ -41,6 +41,13 @@ div.modal {
     border-bottom: solid 2px var(--black);
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .modal-body > div:not(.modal-rules) {

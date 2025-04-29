@@ -593,9 +593,14 @@ sqrElements.forEach((sqr) => {
 informationButtons.forEach((informationButton) => {
     informationButton.addEventListener("click", (e) => {
         // see what are the class name at index 1, and check the typeof return
-        // console.log(typeof e.target.classList.item(1));
-        toggleModal(e.target.classList.item(1));
-        e.stopPropagation();
+        // console.log(e.target);
+        if (e.target.classList.length > 1) {
+            toggleModal(e.target.classList.item(1));
+            e.stopPropagation();
+        } else {
+            toggleModal(e.target.classList.item(0));
+            e.stopPropagation();
+        }
     });
 });
 
