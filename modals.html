@@ -12,7 +12,14 @@
         <!-- Modal 1 : Pause -->
         <div class="modal hide" id="pauseModal" role="dialog">
             <div class="modal-header">
-                <p class="modal-title"></p>
+                <p class="modal-title">
+                    <img
+                        src="./assets/images/information/pause.png"
+                        width="16px"
+                        height="16px"
+                        alt="info : pause"
+                    />Game is on pause...
+                </p>
                 <button class="close" data-dismiss="modal">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -31,10 +38,42 @@
             </div>
             <div class="modal-body">
                 <div class="modal-pause">
-                    <button class="continue">Continue</button>
-                    <button class="reset">Reset</button>
-                    <button class="home">Home</button>
-                    <button class="leaderboard">Leaderboard</button>
+                    <button class="continue">
+                        <img
+                            src="./assets/images/information/continue.png"
+                            width="50px"
+                            height="50px"
+                            class="continue"
+                            alt="continue"
+                        />
+                    </button>
+                    <button class="reset">
+                        <img
+                            src="./assets/images/information/reset.png"
+                            width="50px"
+                            height="50px"
+                            class="reset"
+                            alt="reset"
+                        />
+                    </button>
+                    <button class="home">
+                        <img
+                            src="./assets/images/information/home.png"
+                            width="50px"
+                            height="50px"
+                            class="home"
+                            alt="back to home"
+                        />
+                    </button>
+                    <button class="leaderboard">
+                        <img
+                            src="./assets/images/information/leaderboard.png"
+                            width="50px"
+                            height="50px"
+                            class="leaderboard"
+                            alt="info : leaderboard"
+                        />
+                    </button>
                 </div>
             </div>
         </div>
@@ -42,7 +81,14 @@
         <!-- Modal 2 : Leaderboard -->
         <div class="modal hide" id="leaderboardModal" role="dialog">
             <div class="modal-header">
-                <p class="modal-title">Leaderboard</p>
+                <p class="modal-title">
+                    <img
+                        src="./assets/images/information/leaderboard.png"
+                        width="16px"
+                        height="16px"
+                        alt="info : leaderboard"
+                    />Leaderboard
+                </p>
                 <button class="close" data-dismiss="modal">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +130,8 @@
                         width="16px"
                         height="16px"
                         alt="info : rules"
-                    /> How to play the game?
+                    />
+                    How to play the game?
                 </p>
                 <button class="close" data-dismiss="modal">
                     <svg
@@ -157,7 +204,7 @@
                 <p class="modal-title">Congratulations! 🎉</p>
             </div>
             <div class="modal-body">
-                <div class="modal-game-over">
+                <div class="modal-game-won">
                     <p>You have reached the goal!</p>
                     <p>Are you interested to go for another round?</p>
                     <div class="modal-ans">

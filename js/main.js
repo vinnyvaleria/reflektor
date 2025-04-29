@@ -620,5 +620,7 @@ modalContainer.addEventListener("click", (e) => {
     } else if (e.target.matches(".reset")) {
         resetGame();
         e.stopPropagation();
+    } else if (e.target.matches(".home")) {
+        window.location.href = "index.html";
     }
 });

@@ -33,10 +33,6 @@ div.modal {
     color: var(--primary);
 }
 
-.modal-body {
-    padding: 1rem;
-}
-
 .modal-header {
     border-bottom: solid 2px var(--black);
     display: flex;
@@ -45,13 +41,33 @@ div.modal {
 }
 
 .modal-title {
+    color: var(--dark);
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 
-.modal-body > div:not(.modal-rules) {
+.modal-body {
+    padding: 1rem;
+}
+
+.modal-body > div:not(.modal-rules, .modal-game-over, .modal-game-won) {
+    justify-content: space-around;
+    display: flex;
+}
+
+.modal-game-over,
+.modal-game-won {
     text-align: center;
+}
+
+.modal-body > div > button {
+    background-color: transparent;
+}
+
+.modal-body > div > button:hover > img {
+    cursor: pointer;
+    filter: drop-shadow(2px 4px var(--black));
 }
 
 .modal-ans {
