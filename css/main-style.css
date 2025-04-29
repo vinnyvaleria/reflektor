@@ -73,3 +73,32 @@ footer {
     bottom: 1rem;
     opacity: 0.5;
 }
+
+.mobile-support-alert {
+    display: none;
+    width: calc(0.8 * var(--FW));
+    text-align: center;
+    background-color: var(--light);
+    padding: 1rem;
+    border: 3px solid var(--primary);
+}
+
+.mobile-support-alert > p {
+    font-family: "Jersey 10", sans-serif;
+    font-size: 1.5rem;
+    color: var(--dark);
+}
+
+@media only screen and (max-width: 1024px) {
+    body > div:not(.mobile-support-alert) {
+        display: none;
+    }
+
+    body h1 {
+        display: block;
+    }
+
+    .mobile-support-alert {
+        display: block;
+    }
+}

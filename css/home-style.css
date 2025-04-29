@@ -4,6 +4,7 @@ a {
 }
 
 .home-buttons {
+    width: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
