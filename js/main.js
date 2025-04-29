@@ -602,6 +602,7 @@ informationButtons.forEach((informationButton) => {
 // event delegation within modals
 // cannot use normal event listener as some buttons are added dynamically when modal is showing
 modalContainer.addEventListener("click", (e) => {
+    // console.log(e.target);
     if (e.target.matches(".close")) {
         // console.log(`click close : ${click++}`);
         toggleModal("close");
