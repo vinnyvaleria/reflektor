@@ -614,6 +614,9 @@ modalContainer.addEventListener("click", (e) => {
         // we can stop propagation
         // so as to make sure it does not bubble up
         e.stopPropagation();
+    } else if (e.target.matches(".leaderboard")) {
+        toggleModal("leaderboard");
+        e.stopPropagation();
     } else if (e.target.matches(".continue")) {
         continueGame();
         e.stopPropagation();
