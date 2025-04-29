@@ -39,8 +39,11 @@ body {
 h1 {
     font-family: "Pixelify Sans", sans-serif;
     text-transform: uppercase;
+    color: var(--primary);
     font-size: 4rem;
     margin: 0 0 2rem;
+    -webkit-text-fill-color: var(--light);
+    -webkit-text-stroke: 3px;
 }
 
 p {
