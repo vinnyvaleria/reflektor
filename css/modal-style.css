@@ -52,8 +52,9 @@ div.modal {
 }
 
 .modal-body > div:not(.modal-rules, .modal-game-over, .modal-game-won) {
-    justify-content: space-around;
     display: flex;
+    justify-content: center;
+    gap: 2rem;
 }
 
 .modal-game-over,
