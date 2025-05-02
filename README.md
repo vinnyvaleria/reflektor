@@ -4,6 +4,8 @@
 
 Game is accessible via [Github Page](https://vinnyvaleria.github.io/reflektor/game.html).
 
+![Reflektor](/reflektor/assets/images/game-image.png)
+
 ## 🎯 Project Objective
 
 As an avid gamer myself, **Reflektor** was built as a creative puzzle game to explore mirrored grid logic and interactive game design using only HTML, CSS, and JavaScript. The aim was to create a simple, fun, and visually engaging experience that challenges players to think about spatial patterns and movement.
