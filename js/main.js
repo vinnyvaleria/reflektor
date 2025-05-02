@@ -46,8 +46,8 @@ const keyToArrow = {
 // for initial build, only one helper is available (hammer)
 // in the future, more will be added
 let currentDifficulty;
-let prevHelper;
-let currentHelper;
+let prevHelper = "";
+let currentHelper = "";
 let roundCounter = 0;
 // const for selected map
 let selectedMap = [];
@@ -76,6 +76,8 @@ let showModal = false;
 let currentMessage;
 // let click = 0;
 let currentModal = "";
+// for initialising key listener
+let keyListenersAttached = false;
 
 /*------------------------ Cached Element References ------------------------*/
 // play buttons
@@ -235,10 +237,10 @@ const updateGrid = (mapArray, gridType, gridName) => {
 
 // set helper to grayscale when no longer available
 const updateHelper = () => {
-    console.log("current helper : ", currentHelper);
+    // console.log("current helper : ", currentHelper);
     // check when there exists a current helper assigned
     if (currentHelper) {
-        console.log("yes");
+        // console.log("yes");
         if (prevHelper) {
             // remove any existing active class found
             document.querySelector(`.${prevHelper}`).classList.remove("active");
@@ -525,6 +527,7 @@ const resetGame = () => {
     secGrid.innerHTML = "";
 
     // reset all variables
+    prevHelper = "";
     currentHelper = "";
     roundCounter = 0;
     hasWon = false;
@@ -553,6 +556,53 @@ const resetGame = () => {
     console.log("Game reset done!");
 };
 
+// combine key event listener to prevent stacking
+const initKeyEventListeners = () => {
+    if (keyListenersAttached) return;
+
+    // Reference : https://stackoverflow.com/questions/5597060/detecting-arrow-key-presses-in-javascript
+    // updated function to be more dynamic as the functions passed to switch-case is the same
+    document.addEventListener("keydown", (e) => {
+        const arrow = keyToArrow[e.key];
+        // console.log(arrow);  --> to check on the value
+        if (arrow) {
+            movePlayer(arrow);
+            const button = document.querySelector(`.${arrow}`);
+            button?.classList.add("hover");
+        }
+        // to check if the function is being triggered multiple times
+        // console.log("KEYDOWN TRIGGERED", e.key); --> verified only triggered once per keydown
+
+        // set currentHelper by binding obstacles to the keyboard
+        switch (e.key) {
+            case "1":
+                currentHelper = HELPER[0];
+                updateHelper();
+                break;
+            case "2":
+                currentHelper = HELPER[1];
+                updateHelper();
+                break;
+            case "3":
+                currentHelper = HELPER[2];
+                updateHelper();
+                break;
+        }
+        // console.log(currentHelper); --> validated and correctly assigned!
+    });
+
+    // remove hover styling when key is no longer clicked
+    document.addEventListener("keyup", (e) => {
+        const arrow = keyToArrow[e.key];
+        if (arrow) {
+            const button = document.querySelector(`.${arrow}`);
+            button?.classList.remove("hover");
+        }
+    });
+
+    keyListenersAttached = true;
+};
+
 // initialise game
 const init = () => {
     // console.log("Game initialised!");
@@ -568,6 +618,7 @@ const init = () => {
     generateGrid(currentDifficulty);
     render();
     randomiseObstacles();
+    initKeyEventListeners();
 };
 
 /*----------------------------- Event Listeners -----------------------------*/
@@ -580,28 +631,6 @@ arrowButtons.forEach((arrowButton) => {
         const direction = arrowButton.dataset.direction;
         movePlayer(direction);
     });
-});
-
-// Reference : https://stackoverflow.com/questions/5597060/detecting-arrow-key-presses-in-javascript
-// updated function to be more dynamic as the functions passed to switch-case is the same
-document.addEventListener("keydown", (e) => {
-    const arrow = keyToArrow[e.key];
-    // console.log(arrow);  --> to check on the value
-    if (arrow) {
-        movePlayer(arrow);
-        const button = document.querySelector(`.${arrow}`);
-        button?.classList.add("hover");
-    }
-    // to check if the function is being triggered multiple times
-    // console.log("KEYDOWN TRIGGERED", e.key); --> verified only triggered once per keydown
-});
-
-document.addEventListener("keyup", (e) => {
-    const arrow = keyToArrow[e.key];
-    if (arrow) {
-        const button = document.querySelector(`.${arrow}`);
-        button?.classList.remove("hover");
-    }
 });
 
 // event listener when any of the helper is clicked

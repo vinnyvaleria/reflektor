@@ -7,3 +7,4 @@
 -   [ ] Differentiate continue on pause and after game over.
 -   [ ] Set an active state to helper when selected.
 -   [ ] Leaderboard button does not work at home page.
+-   [ ] helper styling does not work for the first click.
