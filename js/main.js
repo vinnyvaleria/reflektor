@@ -636,7 +636,7 @@ const init = () => {
 
 /*----------------------------- Event Listeners -----------------------------*/
 // initialise the game when start button is clicked
-init();
+document.addEventListener("DOMContentLoaded", init);
 
 // movement controls : arrow buttons on screen or use keyboard arrows
 arrowButtons.forEach((arrowButton) => {
