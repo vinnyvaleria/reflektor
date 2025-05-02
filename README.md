@@ -33,7 +33,7 @@ As an avid gamer myself, **Reflektor** was built as a creative puzzle game to ex
 -   🦮 Mirrored puzzle logic
 -   🎨 Pixel art UI
 -   🧹 Dynamic keyboard + mouse controls
--   ↻ Full game reset and win modal
+-   🔄️ Full game reset and win modal
 
 ## 🧪 Technologies Used
 
