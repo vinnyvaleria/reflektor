@@ -1,10 +1,10 @@
 # Reflektor
 
-**Reflektor** is a browser-based pixel-style puzzle game inspired by mirror mechanics. Built using HTML, CSS, and JavaScript, players control a character navigating a main grid while a mirrored NPC follows on an inverted grid. The objective is to reach the goal without hitting obstacles on either side.
+**Reflektor** is a browser-based (to-be) pixel-style puzzle game inspired by mirror mechanics. Built using HTML, CSS, and JavaScript, players control a character navigating a main grid while a mirrored NPC follows on an inverted grid. The objective is to reach the goal without hitting obstacles on either side.
 
 Game is accessible via [Github Page](https://vinnyvaleria.github.io/reflektor/game.html).
 
-![Reflektor](/reflektor/assets/images/game-image.png)
+![Reflektor](../reflektor/assets/images/game-image.png)
 
 ## 🎯 Project Objective
 
