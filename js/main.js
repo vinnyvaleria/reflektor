@@ -78,6 +78,7 @@ let currentMessage;
 let currentModal = "";
 // for initialising key listener
 let keyListenersAttached = false;
+let prevMapIndex = -1;
 
 /*------------------------ Cached Element References ------------------------*/
 // play buttons
@@ -149,7 +150,7 @@ const toggleModal = async (button) => {
         }
         // throw out of bound if modal is not found
         if (!modalToShow) {
-            console.error(`${button}Modal not found`);
+            // console.error(`${button}Modal not found`);
             return;
         }
 
@@ -162,9 +163,14 @@ const toggleModal = async (button) => {
 
 // randomise map used for the user to play
 const randomiseMap = () => {
+    let randomIndex;
     // randomise map selected
     // assign to selectedMap var later to populate the obstacles in the grid
-    const randomIndex = Math.floor(Math.random() * maps_EASY.length);
+    do {
+        randomIndex = Math.floor(Math.random() * maps_EASY.length);
+    } while (randomIndex === prevMapIndex);
+    // to make sure not the same map is selected after
+    prevMapIndex = randomIndex;
     // console.log(`randomIndex : ${randomIndex}`); --> validated to work!
     return maps_EASY[randomIndex];
 };
@@ -216,6 +222,7 @@ const updateGrid = (mapArray, gridType, gridName) => {
                         ).textContent = "NPC";
                         mirroredID = count;
                     }
+                    // console.log(`Rendering player at ${gridName}-${count}`);
                 }
                 // update content to X to indicate goal when value is 3
                 if (mapArray[row][col] === 3) {
@@ -309,6 +316,7 @@ const locatePlayerInit = () => {
             if (selectedMap[row][col] === 2) {
                 playerRow = row;
                 playerCol = col;
+                // console.log("Found player at", row, col);
             }
         }
     }
@@ -538,21 +546,26 @@ const resetGame = () => {
     mirroredID = undefined;
     playerRow = undefined;
     playerCol = undefined;
+    mirroredCol = undefined;
 
     // close existing modal if any
     toggleModal("close");
 
-    // re-renders everything in the screen in regards to the game
+    // generate new map data
     selectedMap = randomiseMap();
+    // console.log("New map selected:", selectedMap);
     mirroredMap = mirrorSelectedMap();
-    locatePlayerInit();
-    mirroredCol = mirroredMap[playerRow].indexOf(2);
 
     // regenerate grid with current difficulty
     generateGrid(currentDifficulty);
-    updateHelper();
+
+    // locate player in the new map
+    locatePlayerInit();
+    mirroredCol = mirroredMap[playerRow].indexOf(2);
+
     render();
     randomiseObstacles();
+    updateHelper();
     console.log("Game reset done!");
 };
 
@@ -666,7 +679,7 @@ document.addEventListener("keydown", (e) => {
 sqrElements.forEach((sqr) => {
     sqr.addEventListener("click", (e) => {
         if (currentHelper === undefined || currentHelper === "") {
-            console.log("You must select a helper first!");
+            // console.log("You must select a helper first!");
             return;
         }
         removeID = e.target.id;
