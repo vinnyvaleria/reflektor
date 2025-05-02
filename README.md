@@ -56,6 +56,7 @@ As an avid gamer myself, **Reflektor** was built as a creative puzzle game to ex
 -   Sound effects and animations for movements, win and lose
 -   Timer and turn-based challenges
 -   Dark and light mode selection
+-   Publish game online!
 
 ## 🙌 References and Credits
 
