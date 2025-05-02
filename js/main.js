@@ -566,11 +566,11 @@ const resetGame = () => {
     render();
     randomiseObstacles();
     updateHelper();
-    console.log("Game reset done!");
+    // console.log("Game reset done!");
 };
 
 // combine key event listener to prevent stacking
-const initKeyEventListeners = () => {
+const initEventListeners = () => {
     if (keyListenersAttached) return;
 
     // Reference : https://stackoverflow.com/questions/5597060/detecting-arrow-key-presses-in-javascript
@@ -601,7 +601,8 @@ const initKeyEventListeners = () => {
                 updateHelper();
                 break;
         }
-        // console.log(currentHelper); --> validated and correctly assigned!
+        console.log(currentHelper);
+        // --> validated and correctly assigned!
     });
 
     // remove hover styling when key is no longer clicked
@@ -611,6 +612,20 @@ const initKeyEventListeners = () => {
             const button = document.querySelector(`.${arrow}`);
             button?.classList.remove("hover");
         }
+    });
+
+    // add event listener to the main grid
+    sqrElements.forEach((sqr) => {
+        sqr.addEventListener("click", (e) => {
+            if (currentHelper === undefined || currentHelper === "") {
+                // console.log("You must select a helper first!");
+                return;
+            }
+            removeID = e.target.id;
+            // console.log(e.target);
+            // console.log(removeID); --> validated correct id assigned!
+            removeObstacle();
+        });
     });
 
     keyListenersAttached = true;
@@ -624,20 +639,17 @@ const init = () => {
     // console.log(`selectedMap : ${selectedMap}`); --> validated correct map based on randomIndex pointed!
     mirroredMap = mirrorSelectedMap();
     // console.log(`mirroredMap : ${mirroredMap}`); --> validated selectedMap mirrored correctly
+    // generate grid accordingly
+    generateGrid(currentDifficulty);
     locatePlayerInit();
     // assign mirroreCol variable
     mirroredCol = mirroredMap[playerRow].indexOf(2);
-    // generate grid accordingly
-    generateGrid(currentDifficulty);
     render();
     randomiseObstacles();
-    initKeyEventListeners();
+    initEventListeners();
 };
 
 /*----------------------------- Event Listeners -----------------------------*/
-// initialise the game when start button is clicked
-document.addEventListener("DOMContentLoaded", init);
-
 // movement controls : arrow buttons on screen or use keyboard arrows
 arrowButtons.forEach((arrowButton) => {
     arrowButton.addEventListener("click", () => {
@@ -654,38 +666,7 @@ helperButtons.forEach((helperButton) => {
         // set the existing helper variable
         currentHelper = helperButton.dataset.helper;
         // console.log("curr :" + currentHelper); --> validated on assignment
-        // console.log(currentHelper); --> validated that it is working!
         updateHelper();
-    });
-});
-
-// set currentHelper by binding obstacles to the keyboard
-document.addEventListener("keydown", (e) => {
-    switch (e.key) {
-        case "1":
-            currentHelper = HELPER[0];
-            break;
-        case "2":
-            currentHelper = HELPER[1];
-            break;
-        case "3":
-            currentHelper = HELPER[2];
-            break;
-    }
-    // console.log(currentHelper); --> validated and correctly assigned!
-});
-
-// add event listener to the main grid
-sqrElements.forEach((sqr) => {
-    sqr.addEventListener("click", (e) => {
-        if (currentHelper === undefined || currentHelper === "") {
-            // console.log("You must select a helper first!");
-            return;
-        }
-        removeID = e.target.id;
-        // console.log(e.target);
-        // console.log(removeID); --> validated correct id assigned!
-        removeObstacle();
     });
 });
 
@@ -727,3 +708,6 @@ modalContainer.addEventListener("click", (e) => {
         window.location.href = "index.html";
     }
 });
+
+// initialise the game when start button is clicked
+document.addEventListener("DOMContentLoaded", init);
