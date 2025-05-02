@@ -3,24 +3,109 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./css/style.css" />
-        <script defer src="./js/main.js"></script>
-        <title>Reflektor</title>
+        <link rel="icon" href="./assets/images/icon.png" />
+        <link rel="stylesheet" href="./css/main-style.css" />
+        <link rel="stylesheet" href="./css/modal-style.css" />
+        <title>Reflektor (Modals)</title>
     </head>
-    <body>
-        <div class="modal">
+    <body style="width: auto; height: auto">
+        <!-- Modal 1 : Pause -->
+        <div class="modal hide" id="pauseModal" role="dialog">
             <div class="modal-header">
-                <p class="modal-title"></p>
-                <button class="close-icon"></button>
+                <p class="modal-title">
+                    <img
+                        src="./assets/images/information/pause.png"
+                        width="16px"
+                        height="16px"
+                        alt="info : pause"
+                    />Game is on pause...
+                </p>
+                <button class="close" data-dismiss="modal">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="none"
+                        class="close"
+                    >
+                        <path
+                            class="close"
+                            d="M0.311375 15.352V11H3.12738V8.248H5.94338V7.128H3.12738V4.408H0.311375V0.0559998H4.37538V2.808H7.19138V5.496H8.79138V2.808H11.6074V0.0559998H15.7034V4.408H12.8554V7.128H10.0394V8.248H12.8554V11H15.7034V15.352H11.6074V12.632H8.79138V9.88H7.19138V12.632H4.37538V15.352H0.311375Z"
+                            fill="currentColor"
+                        />
+                    </svg>
+                </button>
             </div>
-            <div class="modal-content">
-                <!-- Modal 1 : Pause -->
+            <div class="modal-body">
                 <div class="modal-pause">
-                    <button class="home-icon">Home</button>
-                    <button class="reset-icon">Reset</button>
-                    <button class="leaderboard-icon">Leaderboard</button>
+                    <button class="continue">
+                        <img
+                            src="./assets/images/information/continue.png"
+                            width="50px"
+                            height="50px"
+                            class="continue"
+                            alt="continue"
+                        />
+                    </button>
+                    <button class="reset">
+                        <img
+                            src="./assets/images/information/reset.png"
+                            width="50px"
+                            height="50px"
+                            class="reset"
+                            alt="reset"
+                        />
+                    </button>
+                    <button class="home">
+                        <img
+                            src="./assets/images/information/home.png"
+                            width="50px"
+                            height="50px"
+                            class="home"
+                            alt="back to home"
+                        />
+                    </button>
+                    <button class="leaderboard">
+                        <img
+                            src="./assets/images/information/leaderboard.png"
+                            width="50px"
+                            height="50px"
+                            class="leaderboard"
+                            alt="info : leaderboard"
+                        />
+                    </button>
                 </div>
-                <!-- Modal 2 : Leaderboard -->
+            </div>
+        </div>
+
+        <!-- Modal 2 : Leaderboard -->
+        <div class="modal hide" id="leaderboardModal" role="dialog">
+            <div class="modal-header">
+                <p class="modal-title">
+                    <img
+                        src="./assets/images/information/leaderboard.png"
+                        width="16px"
+                        height="16px"
+                        alt="info : leaderboard"
+                    />Leaderboard
+                </p>
+                <button class="close" data-dismiss="modal">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="none"
+                        class="close"
+                    >
+                        <path
+                            class="close"
+                            d="M0.311375 15.352V11H3.12738V8.248H5.94338V7.128H3.12738V4.408H0.311375V0.0559998H4.37538V2.808H7.19138V5.496H8.79138V2.808H11.6074V0.0559998H15.7034V4.408H12.8554V7.128H10.0394V8.248H12.8554V11H15.7034V15.352H11.6074V12.632H8.79138V9.88H7.19138V12.632H4.37538V15.352H0.311375Z"
+                            fill="currentColor"
+                        />
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
                 <div class="modal-leaderboard">
                     <!-- Leaderboard tab links -->
                     <div class="leaderboard-tabs">
@@ -33,12 +118,45 @@
                     <div id="Time" class="tab-content"></div>
                     <div id="Steps" class="tab-content"></div>
                 </div>
-                <!-- Modal 3 : How To Play (rules) -->
+            </div>
+        </div>
+
+        <!-- Modal 3 : How To Play (rules) -->
+        <div class="modal hide" id="rulesModal" role="dialog">
+            <div class="modal-header">
+                <p class="modal-title">
+                    <img
+                        src="./assets/images/information/rules.png"
+                        width="16px"
+                        height="16px"
+                        alt="info : rules"
+                    />
+                    How to play the game?
+                </p>
+                <button class="close" data-dismiss="modal">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="none"
+                        class="close"
+                    >
+                        <path
+                            class="close"
+                            d="M0.311375 15.352V11H3.12738V8.248H5.94338V7.128H3.12738V4.408H0.311375V0.0559998H4.37538V2.808H7.19138V5.496H8.79138V2.808H11.6074V0.0559998H15.7034V4.408H12.8554V7.128H10.0394V8.248H12.8554V11H15.7034V15.352H11.6074V12.632H8.79138V9.88H7.19138V12.632H4.37538V15.352H0.311375Z"
+                            fill="currentColor"
+                        />
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
                 <div class="modal-rules">
                     <p>
                         The game consists of 2 grids : <br />
-                        Main (left) and Secondary (right)
+                        <span style="color: var(--blue)">Main (left)</span> and
+                        Secondary (right)
                     </p>
+                    <br />
                     <p>
                         Your goal is to move both characters on the Main grid
                         and Secondary grid each to destination X.
@@ -58,10 +176,45 @@
                         </li>
                         <li>
                             If you hit any of the obstacles (brick wall, grass
-                            or big tree), it will be GAME OVER!
+                            or big tree), it will be GAME OVER! <br />(However,
+                            if you decide to continue, it will be counted as an
+                            additional round spent to complete the game)
                         </li>
                         <li>Have fun and be on the leaderboard!</li>
                     </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 4 : Game Over -->
+        <div class="modal hide" id="gameOverModal" role="dialog">
+            <div class="modal-header">
+                <p class="modal-title"></p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-game-over">
+                    <p>Continue?</p>
+                    <div class="modal-ans">
+                        <button class="continue text">Yes</button>
+                        <button class="reset text">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 5 : Game Won -->
+        <div class="modal hide" id="gameWonModal" role="dialog">
+            <div class="modal-header">
+                <p class="modal-title">Congratulations! 🎉</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-game-won">
+                    <p>You have reached the goal!</p>
+                    <p>Are you interested to go for another round?</p>
+                    <div class="modal-ans">
+                        <button class="reset text">Yes</button>
+                        <button class="home text">No</button>
+                    </div>
                 </div>
             </div>
         </div>

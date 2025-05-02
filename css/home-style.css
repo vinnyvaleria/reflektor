@@ -1,0 +1,12 @@
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+.home-buttons {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+}

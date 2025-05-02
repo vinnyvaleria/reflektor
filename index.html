@@ -3,23 +3,34 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./css/style.css" />
-        <script defer src="./js/main.js"></script>
-        <title>Reflektor</title>
+        <link rel="icon" href="./assets/images/icon.png" />
+        <link rel="stylesheet" href="./css/main-style.css" />
+        <link rel="stylesheet" href="./css/home-style.css" />
+        <title>Reflektor (Home)</title>
     </head>
     <body>
+        <h1>Reflektor</h1>
         <div class="homepage">
-            <h1>Reflektor</h1>
             <div class="home-buttons">
-                <button
-                    class="start-button"
-                    onclick="window.location.href = 'game.html';"
-                >
-                    Start Game
-                </button>
-                <button class="leaderboard-icon">Leaderboard</button>
+                <button class="start text" onclick="startGame()">Start Game
+                <button class="leaderboard text">Leaderboard</button>
             </div>
         </div>
-        <footer class="copyright-text">Copyright text</footer>
+        <div class="mobile-support-alert">
+            <p>
+                Hi! Thank you for your interest in the game. We currently only
+                support large screens and desktops with minimum screen width of
+                1025 pixel.
+            </p>
+            <br />
+            <p>Please look forward to our future enhancement for mobile support!</p>
+        </div>
+        <footer class="copyright-text">This game is build with FUN in mind by vinnyvaleria.</footer>
+        <script>
+            // start the game when button is clicked
+            startGame = () => {
+                window.location.href = "game.html"
+            }
+        </script>
     </body>
 </html>

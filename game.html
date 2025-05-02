@@ -3,17 +3,44 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./css/style.css" />
+        <link rel="icon" href="./assets/images/icon.png" />
+        <link rel="stylesheet" href="./css/main-style.css" />
+        <link rel="stylesheet" href="./css/game-style.css" />
+        <link rel="stylesheet" href="./css/modal-style.css" />
         <script defer src="./js/main.js"></script>
-        <title>Reflektor</title>
+        <title>Reflektor (Game)</title>
         <!-- import script to run the init script -->
     </head>
     <body>
         <h1>Reflektor</h1>
         <div class="information-icons">
-            <button class="pause-icon">Pause</button>
-            <button class="leaderboard-icon">Leaderboard</button>
-            <button class="rules-icon">How to Play</button>
+            <button class="information pause">
+                <img
+                    src="./assets/images/information/pause.png"
+                    width="50px"
+                    height="50px"
+                    class="pause"
+                    alt="info : pause"
+                />
+            </button>
+            <button class="information leaderboard">
+                <img
+                    src="./assets/images/information/leaderboard.png"
+                    width="50px"
+                    height="50px"
+                    class="leaderboard"
+                    alt="info : leaderboard"
+                />
+            </button>
+            <button class="information rules">
+                <img
+                    src="./assets/images/information/rules.png"
+                    width="50px"
+                    height="50px"
+                    class="rules"
+                    alt="info : rules"
+                />
+            </button>
         </div>
         <div class="counters">
             <p class="rounds-title">
@@ -27,17 +54,90 @@
             </p> -->
         </div>
         <div class="game-grids-container">
-            <div class="main-grid"></div>
-            <div class="helpers">
-                <button class="helper hammer-icon">Hammer</button>
+            <div class="left-grid-container">
+                <div class="main-grid"></div>
+                <div class="arrows">
+                    <!-- trying to use data-* attributes -->
+                    <!-- keeping the class as it is in case needed for styling (shorter with class than data-* attributes) -->
+                    <button class="arrow up" data-direction="up">
+                        <img
+                            src="./assets/images/up-arrow.png"
+                            width="50px"
+                            height="50px"
+                            alt="arrow up"
+                        /></button
+                    ><br />
+                    <button class="arrow left" data-direction="left">
+                        <img
+                            src="./assets/images/left-arrow.png"
+                            width="50px"
+                            height="50px"
+                            alt="arrow left"
+                        />
+                    </button>
+                    <button class="arrow down" data-direction="down">
+                        <img
+                            src="./assets/images/down-arrow.png"
+                            width="50px"
+                            height="50px"
+                            alt="arrow down"
+                        />
+                    </button>
+                    <button class="arrow right" data-direction="right">
+                        <img
+                            src="./assets/images/right-arrow.png"
+                            width="50px"
+                            height="50px"
+                            alt="arrow right"
+                        />
+                    </button>
+                </div>
             </div>
-            <div class="secondary-grid"></div>
+            <div class="helpers">
+                <button class="helper hammer" data-helper="hammer">
+                    <img
+                        src="./assets/images/helpers/hammer.png"
+                        width="70px"
+                        height="70px"
+                        alt="helper : hammer"
+                    />
+                </button>
+                <button class="helper axe" data-helper="axe">
+                    <img
+                        src="./assets/images/helpers/axe.png"
+                        width="70px"
+                        height="70px"
+                        alt="helper : axe"
+                    />
+                </button>
+                <button class="helper sickle" data-helper="sickle">
+                    <img
+                        src="./assets/images/helpers/sickle.png"
+                        width="70px"
+                        height="70px"
+                        alt="helper : sickle"
+                    />
+                </button>
+            </div>
+            <div class="right-grid-container">
+                <div class="secondary-grid"></div>
+            </div>
         </div>
-        <div class="arrows">
-            <button class="arrow up">Up</button>
-            <button class="arrow left">Left</button>
-            <button class="arrow down">Down</button>
-            <button class="'arrow right">Right</button>
+        <div class="mobile-support-alert">
+            <p>
+                Hi! Thank you for your interest in the game. We currently only
+                support large screens and desktops with minimum screen width of
+                1025 pixel.
+            </p>
+            <br />
+            <p>
+                Please look forward to our future enhancement for mobile
+                support!
+            </p>
         </div>
+        <div id="modal-container" class="hide"></div>
+        <footer class="copyright-text">
+            This game is build with FUN in mind by vinnyvaleria.
+        </footer>
     </body>
 </html>

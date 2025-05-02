@@ -1,0 +1,87 @@
+div#modal-container {
+    width: var(--FW);
+    height: var(--FH);
+    position: absolute;
+    align-content: center;
+    justify-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+div.modal {
+    min-width: 30%;
+    max-width: 50%;
+    height: fit-content;
+    background-color: var(--white);
+    border: solid 2px var(--black);
+    box-shadow: 20px 20px var(--primary);
+    margin: 2rem;
+    z-index: 2; /* bring modal forward */
+    text-align: justify;
+}
+
+.modal-header {
+    padding: 0.7rem 1rem;
+}
+
+.close {
+    background-color: transparent;
+    display: flex; /* removing unnecessary bottom space */
+}
+
+.close:hover {
+    cursor: pointer;
+    color: var(--primary);
+}
+
+.modal-header {
+    border-bottom: solid 2px var(--black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.modal-body {
+    padding: 1rem;
+}
+
+.modal-body > div:not(.modal-rules, .modal-game-over, .modal-game-won) {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.modal-game-over,
+.modal-game-won {
+    text-align: center;
+}
+
+.modal-body > div > button {
+    background-color: transparent;
+}
+
+.modal-body > div > button:hover > img {
+    cursor: pointer;
+    filter: drop-shadow(2px 4px var(--black));
+}
+
+.modal-ans {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+.modal-ans button.text {
+    min-width: 100px;
+}
+
+.hide {
+    display: none;
+}

@@ -1,0 +1,107 @@
+@font-face {
+    font-family: "Jersey 10";
+    src: url(../assets/fonts/Jersey10-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Pixelify Sans";
+    src: url(../assets/fonts/PixelifySans-VariableFont_wght.ttf);
+}
+
+:root {
+    --primary: #ff2d55;
+    --secondary: #9c0a26;
+    --blue: #00639a;
+    --green: #5ce65c;
+    --dark: #5e0a0a;
+    --light: #f5f5dc;
+    --black: #000;
+    --white: #fff;
+    --FW: 100vw; /* set to full-width */
+    --FH: 100vh; /* set to full-height */
+}
+
+body {
+    width: var(--FW);
+    height: var(--FH);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Jersey 10", sans-serif;
+    background-image: url("../assets/images/light-bg.jpg");
+    background-size: cover;
+    background-color: var(--light);
+}
+
+h1 {
+    font-family: "Pixelify Sans", sans-serif;
+    text-transform: uppercase;
+    color: var(--primary);
+    font-size: 4rem;
+    margin: 0 0 2rem;
+    -webkit-text-fill-color: var(--light);
+    -webkit-text-stroke: 3px;
+}
+
+p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+button {
+    padding: 0;
+    border: 0;
+    font-family: "Jersey 10", sans-serif;
+    text-transform: uppercase;
+}
+
+button:hover.text {
+    cursor: pointer;
+    filter: brightness(0.7);
+}
+
+button.text {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    background-color: var(--primary);
+    color: var(--light);
+}
+
+footer {
+    position: absolute;
+    color: var(--dark);
+    bottom: 1rem;
+    opacity: 0.5;
+}
+
+.mobile-support-alert {
+    display: none;
+    width: calc(0.8 * var(--FW));
+    text-align: center;
+    background-color: var(--light);
+    padding: 1rem;
+    border: 3px solid var(--primary);
+}
+
+.mobile-support-alert > p {
+    font-family: "Jersey 10", sans-serif;
+    font-size: 1.5rem;
+    color: var(--dark);
+}
+
+@media only screen and (max-width: 1024px) {
+    body > div:not(.mobile-support-alert) {
+        display: none;
+    }
+
+    body h1 {
+        display: block;
+    }
+
+    .mobile-support-alert {
+        display: block;
+    }
+}
