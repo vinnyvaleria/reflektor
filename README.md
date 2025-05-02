@@ -4,7 +4,7 @@
 
 Game is accessible via [Github Page](https://vinnyvaleria.github.io/reflektor/game.html).
 
-![Reflektor](../reflektor/assets/images/game-image.png)
+![Reflektor](/assets/images/game-image.png)
 
 ## 🎯 Project Objective
 
