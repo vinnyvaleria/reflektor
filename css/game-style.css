@@ -101,6 +101,18 @@ body > div,
     filter: drop-shadow(2px 4px var(--primary));
 }
 
+.helper.active {
+    filter: drop-shadow(2px 4px var(--primary));
+}
+
+.helper.used {
+    filter: grayscale(1);
+}
+
+.helper.used:hover {
+    cursor: unset;
+}
+
 .arrows {
     text-align: center;
     padding: 1rem;

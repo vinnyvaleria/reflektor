@@ -33,6 +33,7 @@ const LEVEL_HARD = 9;
 // available obstacles
 const OBSTACLES = ["wall", "tree", "grass"];
 const HELPER = ["hammer", "axe", "sickle"];
+const HELPER_COUNT = [1, 1, 1];
 // available directions
 const keyToArrow = {
     ArrowUp: "up",
@@ -45,6 +46,7 @@ const keyToArrow = {
 // for initial build, only one helper is available (hammer)
 // in the future, more will be added
 let currentDifficulty;
+let prevHelper;
 let currentHelper;
 let roundCounter = 0;
 // const for selected map
@@ -228,6 +230,55 @@ const updateGrid = (mapArray, gridType, gridName) => {
     } catch (error) {
         // in case any of arguments passed is incorrect
         // console.log(error);
+    }
+};
+
+// set helper to grayscale when no longer available
+const updateHelper = () => {
+    console.log("current helper : ", currentHelper);
+    // check when there exists a current helper assigned
+    if (currentHelper) {
+        console.log("yes");
+        if (prevHelper) {
+            // remove any existing active class found
+            document.querySelector(`.${prevHelper}`).classList.remove("active");
+        }
+        // add a custom class for active current helper
+        document.querySelector(`.${currentHelper}`).classList.add("active");
+        // console.log("set active");
+    }
+
+    // temporary variable to check if the game is reset
+    let valid = true;
+
+    // loop through the existing array
+    for (let i = 0; i < helperAvailability.length; i++) {
+        if (helperAvailability[i] === 0) {
+            // check for existing active class
+            if (
+                document
+                    .querySelector(`.${HELPER[i]}`)
+                    .classList.contains("active")
+            ) {
+                document
+                    .querySelector(`.${HELPER[i]}`)
+                    .classList.remove("active");
+            }
+            // add a custom class used where helper will be grayed if fully used
+            document.querySelector(`.${HELPER[i]}`).classList.add("used");
+        }
+
+        if (helperAvailability[i] !== HELPER_COUNT[i]) {
+            valid = false;
+        }
+    }
+
+    // if the game is reset, valid will be true
+    if (valid) {
+        for (let i = 0; i < helperAvailability.length; i++) {
+            document.querySelector(`.${HELPER[i]}`).classList.remove("used");
+            document.querySelector(`.${HELPER[i]}`).classList.remove("active");
+        }
     }
 };
 
@@ -435,6 +486,7 @@ const removeObstacle = () => {
             // );
         }
     }
+    updateHelper();
 };
 
 // when the user loses
@@ -495,6 +547,7 @@ const resetGame = () => {
 
     // regenerate grid with current difficulty
     generateGrid(currentDifficulty);
+    updateHelper();
     render();
     randomiseObstacles();
     console.log("Game reset done!");
@@ -554,9 +607,13 @@ document.addEventListener("keyup", (e) => {
 // event listener when any of the helper is clicked
 helperButtons.forEach((helperButton) => {
     helperButton.addEventListener("click", () => {
+        prevHelper = currentHelper;
+        // console.log("prev :" + prevHelper); --> validated on assignment
         // set the existing helper variable
         currentHelper = helperButton.dataset.helper;
+        // console.log("curr :" + currentHelper); --> validated on assignment
         // console.log(currentHelper); --> validated that it is working!
+        updateHelper();
     });
 });
 
@@ -584,7 +641,8 @@ sqrElements.forEach((sqr) => {
             return;
         }
         removeID = e.target.id;
-        // console.log(removeID);   --> validated correct id assigned!
+        // console.log(e.target);
+        // console.log(removeID); --> validated correct id assigned!
         removeObstacle();
     });
 });
