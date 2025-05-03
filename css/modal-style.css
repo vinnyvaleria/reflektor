@@ -54,7 +54,20 @@ div.modal {
 .modal-body > div:not(.modal-rules, .modal-game-over, .modal-game-won) {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 2rem;
+}
+
+.modal-input {
+    flex-direction: column;
+    gap: 1rem !important;
+}
+
+.modal-input input {
+    font-family: "Jersey 10", sans-serif;
+    font-size: 1rem;
+    color: var(--primary);
+    width: 80%;
 }
 
 .modal-game-over,
