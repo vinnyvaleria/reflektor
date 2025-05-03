@@ -51,14 +51,19 @@ let roundCounter = 0;
 // const for selected map
 let selectedMap = [];
 let playerID;
+let initPlayerID;
 // for mirrored version of selected map
 let mirroredMap = [];
 let mirroredID;
+let initMirroredID;
 // create a variable for the x and y of player position
 let playerRow;
 let playerCol;
-// only require col for mirrored position
 let mirroredCol;
+// store initial player location
+let initPlayerRow;
+let initPlayerCol;
+let initMirroredCol;
 // noticed that user can still move after game won
 // create a state to check if game is won
 let hasWon = false;
@@ -219,12 +224,14 @@ const updateGrid = (mapArray, gridType, gridName) => {
                             `#${gridName}-${count}`
                         ).textContent = "P";
                         playerID = count;
+                        initPlayerID = count;
                     }
                     if (gridName === "sec") {
                         gridType.querySelector(
                             `#${gridName}-${count}`
                         ).textContent = "NPC";
                         mirroredID = count;
+                        initMirroredID = count;
                     }
                     // console.log(`Rendering player at ${gridName}-${count}`);
                 }
@@ -534,8 +541,32 @@ const render = () => {
     roundElement.textContent = roundCounter;
 };
 
+// update player location to initial position before reset the game
+const resetPlayerPosition = () => {
+    // clear up current player position in the grid
+    // this is done in move player but do again in case it does not work the first time
+    mainGrid.querySelector(`#main-${playerID}`).textContent = "";
+    secGrid.querySelector(`#sec-${mirroredID}`).textContent = "";
+
+    // remove existing player class
+    mainGrid.querySelector(`#main-${playerID}`).classList.remove("player");
+    secGrid.querySelector(`#sec-${mirroredID}`).classList.remove("player");
+
+    // add player class to initial player position
+    mainGrid.querySelector(`#main-${initPlayerID}`).classList.add("player");
+    secGrid.querySelector(`#sec-${initMirroredID}`).classList.add("player");
+
+    // update grid main and secondary array
+    selectedMap[playerRow][playerCol] = 0;
+    mirroredMap[playerRow][mirroredCol] = 0;
+
+    selectedMap[initPlayerRow][initPlayerCol] = 2;
+    mirroredMap[initPlayerRow][initMirroredCol] = 2;
+};
+
 // reset the game
 const resetGame = () => {
+    resetPlayerPosition();
     // clear the grids
     mainGrid.innerHTML = "";
     secGrid.innerHTML = "";
@@ -650,9 +681,10 @@ const init = () => {
     locatePlayerInit();
     // assign mirroreCol variable
     mirroredCol = mirroredMap[playerRow].indexOf(2);
+    initMirroredCol = mirroredCol;
     render();
     randomiseObstacles();
-    saveUserInput();
+    // saveUserInput();
     initEventListeners();
 };
 
