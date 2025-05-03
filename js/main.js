@@ -43,8 +43,7 @@ const keyToArrow = {
 };
 
 /*-------------------------------- Variables --------------------------------*/
-// for initial build, only one helper is available (hammer)
-// in the future, more will be added
+let playerName = "";
 let currentDifficulty;
 let prevHelper = "";
 let currentHelper = "";
@@ -52,14 +51,19 @@ let roundCounter = 0;
 // const for selected map
 let selectedMap = [];
 let playerID;
+let initPlayerID;
 // for mirrored version of selected map
 let mirroredMap = [];
 let mirroredID;
+let initMirroredID;
 // create a variable for the x and y of player position
 let playerRow;
 let playerCol;
-// only require col for mirrored position
 let mirroredCol;
+// store initial player location
+let initPlayerRow;
+let initPlayerCol;
+let initMirroredCol;
 // noticed that user can still move after game won
 // create a state to check if game is won
 let hasWon = false;
@@ -161,6 +165,11 @@ const toggleModal = async (button) => {
     } catch (error) {}
 };
 
+// for user input to be used in leaderboard
+const saveUserInput = () => {
+    toggleModal("input");
+};
+
 // randomise map used for the user to play
 const randomiseMap = () => {
     let randomIndex;
@@ -215,12 +224,14 @@ const updateGrid = (mapArray, gridType, gridName) => {
                             `#${gridName}-${count}`
                         ).textContent = "P";
                         playerID = count;
+                        initPlayerID = count;
                     }
                     if (gridName === "sec") {
                         gridType.querySelector(
                             `#${gridName}-${count}`
                         ).textContent = "NPC";
                         mirroredID = count;
+                        initMirroredID = count;
                     }
                     // console.log(`Rendering player at ${gridName}-${count}`);
                 }
@@ -320,6 +331,8 @@ const locatePlayerInit = () => {
             }
         }
     }
+    initPlayerRow = playerRow;
+    initPlayerCol = playerCol;
 };
 
 // check if player hits an obstacle
@@ -528,8 +541,32 @@ const render = () => {
     roundElement.textContent = roundCounter;
 };
 
+// update player location to initial position before reset the game
+const resetPlayerPosition = () => {
+    // clear up current player position in the grid
+    // this is done in move player but do again in case it does not work the first time
+    mainGrid.querySelector(`#main-${playerID}`).textContent = "";
+    secGrid.querySelector(`#sec-${mirroredID}`).textContent = "";
+
+    // remove existing player class
+    mainGrid.querySelector(`#main-${playerID}`).classList.remove("player");
+    secGrid.querySelector(`#sec-${mirroredID}`).classList.remove("player");
+
+    // add player class to initial player position
+    mainGrid.querySelector(`#main-${initPlayerID}`).classList.add("player");
+    secGrid.querySelector(`#sec-${initMirroredID}`).classList.add("player");
+
+    // update grid main and secondary array
+    selectedMap[playerRow][playerCol] = 0;
+    mirroredMap[playerRow][mirroredCol] = 0;
+
+    selectedMap[initPlayerRow][initPlayerCol] = 2;
+    mirroredMap[initPlayerRow][initMirroredCol] = 2;
+};
+
 // reset the game
 const resetGame = () => {
+    resetPlayerPosition();
     // clear the grids
     mainGrid.innerHTML = "";
     secGrid.innerHTML = "";
@@ -566,11 +603,11 @@ const resetGame = () => {
     render();
     randomiseObstacles();
     updateHelper();
-    console.log("Game reset done!");
+    // console.log("Game reset done!");
 };
 
 // combine key event listener to prevent stacking
-const initKeyEventListeners = () => {
+const initEventListeners = () => {
     if (keyListenersAttached) return;
 
     // Reference : https://stackoverflow.com/questions/5597060/detecting-arrow-key-presses-in-javascript
@@ -601,7 +638,8 @@ const initKeyEventListeners = () => {
                 updateHelper();
                 break;
         }
-        // console.log(currentHelper); --> validated and correctly assigned!
+        console.log(currentHelper);
+        // --> validated and correctly assigned!
     });
 
     // remove hover styling when key is no longer clicked
@@ -611,6 +649,20 @@ const initKeyEventListeners = () => {
             const button = document.querySelector(`.${arrow}`);
             button?.classList.remove("hover");
         }
+    });
+
+    // add event listener to the main grid
+    sqrElements.forEach((sqr) => {
+        sqr.addEventListener("click", (e) => {
+            if (currentHelper === undefined || currentHelper === "") {
+                // console.log("You must select a helper first!");
+                return;
+            }
+            removeID = e.target.id;
+            // console.log(e.target);
+            // console.log(removeID); --> validated correct id assigned!
+            removeObstacle();
+        });
     });
 
     keyListenersAttached = true;
@@ -624,20 +676,19 @@ const init = () => {
     // console.log(`selectedMap : ${selectedMap}`); --> validated correct map based on randomIndex pointed!
     mirroredMap = mirrorSelectedMap();
     // console.log(`mirroredMap : ${mirroredMap}`); --> validated selectedMap mirrored correctly
+    // generate grid accordingly
+    generateGrid(currentDifficulty);
     locatePlayerInit();
     // assign mirroreCol variable
     mirroredCol = mirroredMap[playerRow].indexOf(2);
-    // generate grid accordingly
-    generateGrid(currentDifficulty);
+    initMirroredCol = mirroredCol;
     render();
     randomiseObstacles();
-    initKeyEventListeners();
+    // saveUserInput();
+    initEventListeners();
 };
 
 /*----------------------------- Event Listeners -----------------------------*/
-// initialise the game when start button is clicked
-document.addEventListener("DOMContentLoaded", init);
-
 // movement controls : arrow buttons on screen or use keyboard arrows
 arrowButtons.forEach((arrowButton) => {
     arrowButton.addEventListener("click", () => {
@@ -654,38 +705,7 @@ helperButtons.forEach((helperButton) => {
         // set the existing helper variable
         currentHelper = helperButton.dataset.helper;
         // console.log("curr :" + currentHelper); --> validated on assignment
-        // console.log(currentHelper); --> validated that it is working!
         updateHelper();
-    });
-});
-
-// set currentHelper by binding obstacles to the keyboard
-document.addEventListener("keydown", (e) => {
-    switch (e.key) {
-        case "1":
-            currentHelper = HELPER[0];
-            break;
-        case "2":
-            currentHelper = HELPER[1];
-            break;
-        case "3":
-            currentHelper = HELPER[2];
-            break;
-    }
-    // console.log(currentHelper); --> validated and correctly assigned!
-});
-
-// add event listener to the main grid
-sqrElements.forEach((sqr) => {
-    sqr.addEventListener("click", (e) => {
-        if (currentHelper === undefined || currentHelper === "") {
-            // console.log("You must select a helper first!");
-            return;
-        }
-        removeID = e.target.id;
-        // console.log(e.target);
-        // console.log(removeID); --> validated correct id assigned!
-        removeObstacle();
     });
 });
 
@@ -727,3 +747,6 @@ modalContainer.addEventListener("click", (e) => {
         window.location.href = "index.html";
     }
 });
+
+// initialise the game when start button is clicked
+document.addEventListener("DOMContentLoaded", init);
