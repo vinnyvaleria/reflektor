@@ -43,8 +43,7 @@ const keyToArrow = {
 };
 
 /*-------------------------------- Variables --------------------------------*/
-// for initial build, only one helper is available (hammer)
-// in the future, more will be added
+let playerName = "";
 let currentDifficulty;
 let prevHelper = "";
 let currentHelper = "";
@@ -159,6 +158,11 @@ const toggleModal = async (button) => {
         currentModal = button;
         showModal = true;
     } catch (error) {}
+};
+
+// for user input to be used in leaderboard
+const saveUserInput = () => {
+    toggleModal("input");
 };
 
 // randomise map used for the user to play
@@ -320,6 +324,8 @@ const locatePlayerInit = () => {
             }
         }
     }
+    initPlayerRow = playerRow;
+    initPlayerCol = playerCol;
 };
 
 // check if player hits an obstacle
@@ -646,6 +652,7 @@ const init = () => {
     mirroredCol = mirroredMap[playerRow].indexOf(2);
     render();
     randomiseObstacles();
+    saveUserInput();
     initEventListeners();
 };
 
