@@ -613,11 +613,15 @@ const initEventListeners = () => {
     // Reference : https://stackoverflow.com/questions/5597060/detecting-arrow-key-presses-in-javascript
     // updated function to be more dynamic as the functions passed to switch-case is the same
     document.addEventListener("keydown", (e) => {
+        // console.log("Key down detected:", e.key);
         const arrow = keyToArrow[e.key];
-        // console.log(arrow);  --> to check on the value
+        // console.log("Key down arrow:", arrow);
         if (arrow) {
             movePlayer(arrow);
-            const button = document.querySelector(`.${arrow}`);
+            const button = document.querySelector(
+                `.left-grid-container .arrow.${arrow}`
+            );
+            // console.log(button);
             button?.classList.add("hover");
         }
         // to check if the function is being triggered multiple times
@@ -643,9 +647,13 @@ const initEventListeners = () => {
 
     // remove hover styling when key is no longer clicked
     document.addEventListener("keyup", (e) => {
+        // console.log("Key up detected:", e.key);
         const arrow = keyToArrow[e.key];
+        // console.log("Key up arrow:", arrow);
         if (arrow) {
-            const button = document.querySelector(`.${arrow}`);
+            const button = document.querySelector(
+                `.left-grid-container .arrow.${arrow}`
+            );
             button?.classList.remove("hover");
         }
     });

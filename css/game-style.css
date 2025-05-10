@@ -120,7 +120,8 @@ body > div,
     align-content: center;
 }
 
-.arrow:hover > img {
+.arrow:hover > img,
+.arrow.hover > img {
     cursor: pointer;
     filter: brightness(0.7);
 }
