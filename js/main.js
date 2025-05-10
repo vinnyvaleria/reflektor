@@ -638,8 +638,7 @@ const initEventListeners = () => {
                 updateHelper();
                 break;
         }
-        console.log(currentHelper);
-        // --> validated and correctly assigned!
+        // console.log(currentHelper); --> validated and correctly assigned!
     });
 
     // remove hover styling when key is no longer clicked
