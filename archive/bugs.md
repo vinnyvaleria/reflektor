@@ -9,3 +9,4 @@
 -   [ ] Leaderboard button does not work at home page.
 -   [ ] Helper styling does not work for the first click.
 -   [ ] Helper not working after player resets game.
+-   [ ] Arrow image hover styling not working when user uses the keyboard.
